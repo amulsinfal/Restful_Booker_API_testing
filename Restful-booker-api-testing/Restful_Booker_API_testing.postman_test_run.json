@@ -1,0 +1,2007 @@
+{
+	"id": "47832324-7c7e-432b-8a97-7936a3e8de24",
+	"name": "Restful_Booker_API_testing",
+	"timestamp": "2025-07-14T18:57:48.049Z",
+	"collection_id": "29776566-a37022ef-62bb-489b-a8d4-e8efef4f79d2",
+	"folder_id": 0,
+	"environment_id": "29776566-4100d92d-055f-4737-b6e4-b312acfbfb35",
+	"totalPass": 161,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-07-14T18:57:33.112Z",
+	"totalFail": 2,
+	"results": [
+		{
+			"id": "b8a368ab-7c27-4144-8734-9e35455339da",
+			"name": "Auth - CreateToken",
+			"url": "https://restful-booker.herokuapp.com/auth",
+			"time": 917,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 2 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response body contains field \"token\"": true,
+				"Verify if the token format is a non-empty alphanumeric string": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 2 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains field \"token\"": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the token format is a non-empty alphanumeric string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				917
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 2 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response body contains field \"token\"": true,
+					"Verify if the token format is a non-empty alphanumeric string": true
+				}
+			]
+		},
+		{
+			"id": "ce526b20-fa66-409f-805b-364f7e8fbed0",
+			"name": "Booking - GetBookingIds",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 438,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response is an array": true,
+				"Verify if the first object contains bookingid key": true,
+				"Verify all booking items have bookingid (number)": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response is an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the first object contains bookingid key": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify all booking items have bookingid (number)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				438
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response is an array": true,
+					"Verify if the first object contains bookingid key": true,
+					"Verify all booking items have bookingid (number)": true
+				}
+			]
+		},
+		{
+			"id": "6d322383-750c-4b90-8c8f-845061b4afe0",
+			"name": "Booking - CreateBooking",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 221,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response is an Object": true,
+				"Verify if the response contains bookingid and booking fields": true,
+				"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates, additionalneeds": true,
+				"Verify if bookingdates contains checkin and checkout keys": true,
+				"Verify if the booking details are in correct format": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response is an Object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response contains bookingid and booking fields": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates, additionalneeds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if bookingdates contains checkin and checkout keys": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking details are in correct format": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				221
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response is an Object": true,
+					"Verify if the response contains bookingid and booking fields": true,
+					"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates, additionalneeds": true,
+					"Verify if bookingdates contains checkin and checkout keys": true,
+					"Verify if the booking details are in correct format": true
+				}
+			]
+		},
+		{
+			"id": "bbd3fdfe-8228-4a14-9ca7-8529c1cb8320",
+			"name": "Booking - GetBooking",
+			"url": "https://restful-booker.herokuapp.com/booking/3635",
+			"time": 236,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 2 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response is an Object": true,
+				"Verify booking contains all required fields": true,
+				"Verify bookingdates contains checkin and checkout": true,
+				"Verify booking fields are in correct format": true,
+				"Verify booking details match expected values": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 2 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response is an Object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking contains all required fields": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify bookingdates contains checkin and checkout": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking fields are in correct format": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking details match expected values": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				236
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 2 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response is an Object": true,
+					"Verify booking contains all required fields": true,
+					"Verify bookingdates contains checkin and checkout": true,
+					"Verify booking fields are in correct format": true,
+					"Verify booking details match expected values": true
+				}
+			]
+		},
+		{
+			"id": "47fae0de-3be4-4edf-8dbb-6590da8c2702",
+			"name": "Booking - UpdateBooking",
+			"url": "https://restful-booker.herokuapp.com/booking/3635",
+			"time": 234,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response is an Object": true,
+				"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates": true,
+				"Verify if the booking dates contains checkin and checkout keys": true,
+				"Verify if the booking details are in correct format": true,
+				"Verify booking details match expected": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response is an Object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking dates contains checkin and checkout keys": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking details are in correct format": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking details match expected": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				234
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response is an Object": true,
+					"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates": true,
+					"Verify if the booking dates contains checkin and checkout keys": true,
+					"Verify if the booking details are in correct format": true,
+					"Verify booking details match expected": true
+				}
+			]
+		},
+		{
+			"id": "ce046edc-5f01-4dc0-b8cd-b38202fa4194",
+			"name": "Booking - PartialUpdateBooking",
+			"url": "https://restful-booker.herokuapp.com/booking/3635",
+			"time": 222,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response is an Object": true,
+				"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates": true,
+				"Verify if the booking dates contains checkin and checkout keys": true,
+				"Verify if the booking details are in correct format": true,
+				"Verify booking details match expected": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response is an Object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking dates contains checkin and checkout keys": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking details are in correct format": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking details match expected": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				222
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response is an Object": true,
+					"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates": true,
+					"Verify if the booking dates contains checkin and checkout keys": true,
+					"Verify if the booking details are in correct format": true,
+					"Verify booking details match expected": true
+				}
+			]
+		},
+		{
+			"id": "8b8a9e1d-7c79-4524-8562-facca20dad3a",
+			"name": "Booking - DeleteBooking",
+			"url": "https://restful-booker.herokuapp.com/booking/3635",
+			"time": 231,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Verify if the response code is 201 (Created)": true,
+				"Verify if the response status text = Created": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received": true,
+				"Verify if Content-Type is text/plain": true,
+				"Verify if the response body contains text 'Created'": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 201 (Created)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response status text = Created": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if Content-Type is text/plain": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text 'Created'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				231
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 201 (Created)": true,
+					"Verify if the response status text = Created": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received": true,
+					"Verify if Content-Type is text/plain": true,
+					"Verify if the response body contains text 'Created'": true
+				}
+			]
+		},
+		{
+			"id": "d69ec8d5-2fb1-4561-8161-10c64d3093a7",
+			"name": "Auth - CreateToken",
+			"url": "https://restful-booker.herokuapp.com/auth",
+			"time": 219,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				219
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "44bf1d55-8a79-48f5-b896-7189f9872ef4",
+			"name": "Booking - GetBookingIds",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 234,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				234
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "97ec76bc-697b-4114-9183-a064a0b1ce50",
+			"name": "Create Booking - Invalid HTTP Method PUT",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 228,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				228
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "ad0ef9ea-83ea-404d-a8fc-b61bb4705633",
+			"name": "Create Booking - Invalid HTTP Method PATCH",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 221,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				221
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "1526c5d9-38c5-45e6-b4ae-b8a2a3361071",
+			"name": "Create Booking - Invalid HTTP DELETE",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 221,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				221
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "540c2ccf-4f35-4440-b73c-854c5b41be2d",
+			"name": "Update Booking - Invalid HTTP Method POST",
+			"url": "https://restful-booker.herokuapp.com/booking/2931",
+			"time": 227,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				227
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "c9f1605d-fc32-4359-b109-26db48926cad",
+			"name": "PartialUpdateBooking - Invalid HTTP method POST",
+			"url": "https://restful-booker.herokuapp.com/booking/2931",
+			"time": 220,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				220
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "6947dbe1-c7af-449c-bb14-6a370fc994e9",
+			"name": "DeleteBooking - Invalid HTTP Method POST",
+			"url": "https://restful-booker.herokuapp.com/booking/2931",
+			"time": 220,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				220
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "0458a666-43f5-4162-8c63-c243988fc0fb",
+			"name": "Auth - CreateToken",
+			"url": "https://restful-booker.herokuapp.com/auth",
+			"time": 220,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				220
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "6fc652da-cdda-45da-922b-a69982175575",
+			"name": "Booking - GetBookingIds",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 226,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				226
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "04d08929-f0de-4be0-b138-3fcf7f5b1ecc",
+			"name": "CreateBooking - Broken EndPoint",
+			"url": "https://restful-booker.herokuapp.com/bookings",
+			"time": 221,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				221
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "83ca1a75-a816-43ac-a924-91b04c0b0253",
+			"name": "GetBooking - Broken Endpoint",
+			"url": "https://restful-booker.herokuapp.com/bookings/2931",
+			"time": 222,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				222
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "7727617d-d890-4503-b8b7-6bc3fe53cec2",
+			"name": "Booking - UpdateBooking",
+			"url": "https://restful-booker.herokuapp.com/bookings/2931",
+			"time": 221,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				221
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "8228bcc4-9ab2-4611-82bc-8307baffcd17",
+			"name": "Booking - PartialUpdateBooking",
+			"url": "https://restful-booker.herokuapp.com/bookings/2931",
+			"time": 221,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				221
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "5db879d8-6069-4ec9-9266-c4d5b166748e",
+			"name": "Booking - DeleteBooking",
+			"url": "https://restful-booker.herokuapp.com/bookings/2931",
+			"time": 220,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Verify if the response code is 404 Not Found client side error": true,
+				"Verify if the response body contains text \"Not Found\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 404 Not Found client side error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Not Found\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				220
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 404 Not Found client side error": true,
+					"Verify if the response body contains text \"Not Found\"": true
+				}
+			]
+		},
+		{
+			"id": "a6c58956-0281-4c1c-98be-329cc8dc7143",
+			"name": "Auth - CreateToken Copy",
+			"url": "https://restful-booker.herokuapp.com/auth",
+			"time": 232,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				232
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "74e7df72-3486-499c-bfa5-1870235c108f",
+			"name": "Booking - GetBookingIds",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 233,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				233
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "4de78941-8f24-41c5-8f32-adee37f8f099",
+			"name": "CreateBooking Payload Tempering Invalid Data Type",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 234,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Verify if the response code is 500 Internal Server Error": true,
+				"Verify if the response body contains text \"Internal Server Error\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 500 Internal Server Error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Internal Server Error\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				234
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 500 Internal Server Error": true,
+					"Verify if the response body contains text \"Internal Server Error\"": true
+				}
+			]
+		},
+		{
+			"id": "04304ba8-4a8f-49e4-8288-1cbfb25c1358",
+			"name": "CreateBooking Payload Tempering Invalid data length",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 222,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Verify if the response code is 400 Bad Request": true,
+				"Verify if the response body contains text \"Bad Request\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 400 Bad Request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Bad Request\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				222
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 400 Bad Request": true,
+					"Verify if the response body contains text \"Bad Request\"": true
+				}
+			]
+		},
+		{
+			"id": "e8c97d4c-a5e3-4a2c-b8e5-cce88cb99b9f",
+			"name": "CreateBooking Payload Tempering - Firstname Field Missing in Payload",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 221,
+			"responseCode": {
+				"code": 500,
+				"name": "Internal Server Error"
+			},
+			"tests": {
+				"Verify if the response code is 500 Internal Server Error": true,
+				"Verify if the response body contains text \"Internal Server Error\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 500 Internal Server Error": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Internal Server Error\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				221
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 500 Internal Server Error": true,
+					"Verify if the response body contains text \"Internal Server Error\"": true
+				}
+			]
+		},
+		{
+			"id": "25440e2a-e842-4674-abac-9304aad9b1b6",
+			"name": "CreateBooking Payload Tempering Additional Field",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 228,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code has an error": false
+			},
+			"testPassFailCounts": {
+				"Verify if the response code has an error": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				228
+			],
+			"allTests": [
+				{
+					"Verify if the response code has an error": false
+				}
+			]
+		},
+		{
+			"id": "a5019d1b-bfea-454f-b706-3d5ef3dfd535",
+			"name": "CreateBooking Payload Tempering - Empty Fields",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 232,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code has an error": false
+			},
+			"testPassFailCounts": {
+				"Verify if the response code has an error": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				232
+			],
+			"allTests": [
+				{
+					"Verify if the response code has an error": false
+				}
+			]
+		},
+		{
+			"id": "f868a25b-aa57-47a0-b117-da7855cf68ee",
+			"name": "UpdateBooking Payload Tempering Invalid Data Type",
+			"url": "https://restful-booker.herokuapp.com/booking/2931",
+			"time": 230,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Verify if the response code is 400 Bad Request": true,
+				"Verify if the response body contains text \"Bad Request\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 400 Bad Request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Bad Request\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				230
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 400 Bad Request": true,
+					"Verify if the response body contains text \"Bad Request\"": true
+				}
+			]
+		},
+		{
+			"id": "205ff15b-f38c-4c11-83c1-3c795270e65a",
+			"name": "UpdateBooking  Payload Tempering Invalid data length",
+			"url": "https://restful-booker.herokuapp.com/booking/2931",
+			"time": 219,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Verify if the response code is 400 Bad Request": true,
+				"Verify if the response body contains text \"Bad Request\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 400 Bad Request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Bad Request\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				219
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 400 Bad Request": true,
+					"Verify if the response body contains text \"Bad Request\"": true
+				}
+			]
+		},
+		{
+			"id": "b39e5b36-7fae-4f9f-9fc5-a2603428ea1b",
+			"name": "UpdateBooking Payload Tempering - Firstname Field Missing in Payload",
+			"url": "https://restful-booker.herokuapp.com/booking/2931",
+			"time": 221,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Verify if the response code is 400 Bad Request": true,
+				"Verify if the response body contains text \"Bad Request\"": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 400 Bad Request": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text \"Bad Request\"": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				221
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 400 Bad Request": true,
+					"Verify if the response body contains text \"Bad Request\"": true
+				}
+			]
+		},
+		{
+			"id": "e3d1de86-cb46-44a4-abc2-39f9f4867687",
+			"name": "UpdateBooking Payload Tempering Additional Field",
+			"url": "https://restful-booker.herokuapp.com/booking/2931",
+			"time": 220,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Verify if the response code has an error": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code has an error": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				220
+			],
+			"allTests": [
+				{
+					"Verify if the response code has an error": true
+				}
+			]
+		},
+		{
+			"id": "59c62817-b4cb-4d71-9dd1-e8c8dfd43ce0",
+			"name": "UpdateBooking Payload Tempering - Empty Fields",
+			"url": "https://restful-booker.herokuapp.com/booking/2931",
+			"time": 219,
+			"responseCode": {
+				"code": 403,
+				"name": "Forbidden"
+			},
+			"tests": {
+				"Verify if the response code has an error": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code has an error": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				219
+			],
+			"allTests": [
+				{
+					"Verify if the response code has an error": true
+				}
+			]
+		},
+		{
+			"id": "9f71ad75-a061-4cab-8fd0-035a64d2596a",
+			"name": "CREATE TOKEN",
+			"url": "https://restful-booker.herokuapp.com/auth",
+			"time": 219,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response body contains field \"token\"": true,
+				"Verify if the token format is a non-empty alphanumeric string": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains field \"token\"": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the token format is a non-empty alphanumeric string": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				219
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response body contains field \"token\"": true,
+					"Verify if the token format is a non-empty alphanumeric string": true
+				}
+			]
+		},
+		{
+			"id": "0e87a81b-f3ce-480c-be11-342c223d92ab",
+			"name": "CREATE NEW BOOKING",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 219,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response is an Object": true,
+				"Verify if the response contains bookingid and booking fields": true,
+				"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates, additionalneeds": true,
+				"Verify if bookingdates contains checkin and checkout keys": true,
+				"Verify if the booking details are in correct format": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response is an Object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response contains bookingid and booking fields": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates, additionalneeds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if bookingdates contains checkin and checkout keys": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking details are in correct format": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				219
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response is an Object": true,
+					"Verify if the response contains bookingid and booking fields": true,
+					"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates, additionalneeds": true,
+					"Verify if bookingdates contains checkin and checkout keys": true,
+					"Verify if the booking details are in correct format": true
+				}
+			]
+		},
+		{
+			"id": "c47732af-306a-486f-a14f-53cb44be68ab",
+			"name": "VERIFY IF BOOKING CREATED",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 225,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response is an array": true,
+				"Verify if the first object contains bookingid key": true,
+				"Verify all booking items have bookingid (number)": true,
+				"Verify if the booking is created with bookingid = 3720": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response is an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the first object contains bookingid key": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify all booking items have bookingid (number)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking is created with bookingid = 3720": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				225
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response is an array": true,
+					"Verify if the first object contains bookingid key": true,
+					"Verify all booking items have bookingid (number)": true,
+					"Verify if the booking is created with bookingid = 3720": true
+				}
+			]
+		},
+		{
+			"id": "05af8569-9830-4588-801f-17e097de3c6e",
+			"name": "UPDATE THE BOOKING",
+			"url": "https://restful-booker.herokuapp.com/booking/3720",
+			"time": 227,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response is an Object": true,
+				"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates": true,
+				"Verify if the booking dates contains checkin and checkout keys": true,
+				"Verify if the booking details are in correct format": true,
+				"Verify booking details match expected": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response is an Object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking dates contains checkin and checkout keys": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking details are in correct format": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking details match expected": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				227
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response is an Object": true,
+					"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates": true,
+					"Verify if the booking dates contains checkin and checkout keys": true,
+					"Verify if the booking details are in correct format": true,
+					"Verify booking details match expected": true
+				}
+			]
+		},
+		{
+			"id": "fbd159b0-0136-445c-b16b-6b90fe6f8476",
+			"name": "VERIFY IF BOOKING IS UPDATED",
+			"url": "https://restful-booker.herokuapp.com/booking/3720",
+			"time": 220,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response is an Object": true,
+				"Verify booking contains all required fields": true,
+				"Verify bookingdates contains checkin and checkout": true,
+				"Verify booking fields are in correct format": true,
+				"Verify booking is updated with firstname=Joesph": true,
+				"Verify booking is updated with lastname=Schaden": true,
+				"Verify booking is updated with total price=200": true,
+				"Verify booking details match expected values": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response is an Object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking contains all required fields": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify bookingdates contains checkin and checkout": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking fields are in correct format": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking is updated with firstname=Joesph": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking is updated with lastname=Schaden": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking is updated with total price=200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify booking details match expected values": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				220
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response is an Object": true,
+					"Verify booking contains all required fields": true,
+					"Verify bookingdates contains checkin and checkout": true,
+					"Verify booking fields are in correct format": true,
+					"Verify booking is updated with firstname=Joesph": true,
+					"Verify booking is updated with lastname=Schaden": true,
+					"Verify booking is updated with total price=200": true,
+					"Verify booking details match expected values": true
+				}
+			]
+		},
+		{
+			"id": "9ac46a4c-4727-41f1-804c-f8e01bb01633",
+			"name": "DELETE THE BOOKING",
+			"url": "https://restful-booker.herokuapp.com/booking/3720",
+			"time": 225,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Verify if the response code is 201 (Created)": true,
+				"Verify if the response status text = Created": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received": true,
+				"Verify if Content-Type is text/plain": true,
+				"Verify if the response body contains text 'Created'": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code is 201 (Created)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response status text = Created": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if Content-Type is text/plain": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body contains text 'Created'": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				225
+			],
+			"allTests": [
+				{
+					"Verify if the response code is 201 (Created)": true,
+					"Verify if the response status text = Created": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received": true,
+					"Verify if Content-Type is text/plain": true,
+					"Verify if the response body contains text 'Created'": true
+				}
+			]
+		},
+		{
+			"id": "ecda06e9-561a-4a3c-b38b-4c0e452e822f",
+			"name": "VERIFY IF BOOKING IS DELETED",
+			"url": "https://restful-booker.herokuapp.com/booking",
+			"time": 225,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verify if the response code = 200": true,
+				"Verify if the response message = OK": true,
+				"Verify if the response time is < 3 seconds": true,
+				"Verify if the response body is received from server": true,
+				"Verify if the response header Content-Type=application/json": true,
+				"Verify if the response is an array": true,
+				"Verify if the first object contains bookingid key": true,
+				"Verify all booking items have bookingid (number)": true,
+				"Verify if the booking is deleted with bookingid = 3720": true
+			},
+			"testPassFailCounts": {
+				"Verify if the response code = 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response message = OK": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response time is < 3 seconds": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response body is received from server": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response header Content-Type=application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the response is an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the first object contains bookingid key": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify all booking items have bookingid (number)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Verify if the booking is deleted with bookingid = 3720": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				225
+			],
+			"allTests": [
+				{
+					"Verify if the response code = 200": true,
+					"Verify if the response message = OK": true,
+					"Verify if the response time is < 3 seconds": true,
+					"Verify if the response body is received from server": true,
+					"Verify if the response header Content-Type=application/json": true,
+					"Verify if the response is an array": true,
+					"Verify if the first object contains bookingid key": true,
+					"Verify all booking items have bookingid (number)": true,
+					"Verify if the booking is deleted with bookingid = 3720": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 10111,
+	"collection": {
+		"requests": [
+			{
+				"id": "b8a368ab-7c27-4144-8734-9e35455339da",
+				"method": "POST"
+			},
+			{
+				"id": "ce526b20-fa66-409f-805b-364f7e8fbed0",
+				"method": "GET"
+			},
+			{
+				"id": "6d322383-750c-4b90-8c8f-845061b4afe0",
+				"method": "POST"
+			},
+			{
+				"id": "bbd3fdfe-8228-4a14-9ca7-8529c1cb8320",
+				"method": "GET"
+			},
+			{
+				"id": "47fae0de-3be4-4edf-8dbb-6590da8c2702",
+				"method": "PUT"
+			},
+			{
+				"id": "ce046edc-5f01-4dc0-b8cd-b38202fa4194",
+				"method": "PATCH"
+			},
+			{
+				"id": "8b8a9e1d-7c79-4524-8562-facca20dad3a",
+				"method": "DELETE"
+			},
+			{
+				"id": "d69ec8d5-2fb1-4561-8161-10c64d3093a7",
+				"method": "POST"
+			},
+			{
+				"id": "44bf1d55-8a79-48f5-b896-7189f9872ef4",
+				"method": "GET"
+			},
+			{
+				"id": "97ec76bc-697b-4114-9183-a064a0b1ce50",
+				"method": "PUT"
+			},
+			{
+				"id": "ad0ef9ea-83ea-404d-a8fc-b61bb4705633",
+				"method": "PATCH"
+			},
+			{
+				"id": "1526c5d9-38c5-45e6-b4ae-b8a2a3361071",
+				"method": "DELETE"
+			},
+			{
+				"id": "540c2ccf-4f35-4440-b73c-854c5b41be2d",
+				"method": "POST"
+			},
+			{
+				"id": "c9f1605d-fc32-4359-b109-26db48926cad",
+				"method": "POST"
+			},
+			{
+				"id": "6947dbe1-c7af-449c-bb14-6a370fc994e9",
+				"method": "POST"
+			},
+			{
+				"id": "0458a666-43f5-4162-8c63-c243988fc0fb",
+				"method": "POST"
+			},
+			{
+				"id": "6fc652da-cdda-45da-922b-a69982175575",
+				"method": "GET"
+			},
+			{
+				"id": "04d08929-f0de-4be0-b138-3fcf7f5b1ecc",
+				"method": "POST"
+			},
+			{
+				"id": "83ca1a75-a816-43ac-a924-91b04c0b0253",
+				"method": "GET"
+			},
+			{
+				"id": "7727617d-d890-4503-b8b7-6bc3fe53cec2",
+				"method": "PUT"
+			},
+			{
+				"id": "8228bcc4-9ab2-4611-82bc-8307baffcd17",
+				"method": "PATCH"
+			},
+			{
+				"id": "5db879d8-6069-4ec9-9266-c4d5b166748e",
+				"method": "DELETE"
+			},
+			{
+				"id": "a6c58956-0281-4c1c-98be-329cc8dc7143",
+				"method": "POST"
+			},
+			{
+				"id": "74e7df72-3486-499c-bfa5-1870235c108f",
+				"method": "GET"
+			},
+			{
+				"id": "4de78941-8f24-41c5-8f32-adee37f8f099",
+				"method": "POST"
+			},
+			{
+				"id": "04304ba8-4a8f-49e4-8288-1cbfb25c1358",
+				"method": "POST"
+			},
+			{
+				"id": "e8c97d4c-a5e3-4a2c-b8e5-cce88cb99b9f",
+				"method": "POST"
+			},
+			{
+				"id": "25440e2a-e842-4674-abac-9304aad9b1b6",
+				"method": "POST"
+			},
+			{
+				"id": "a5019d1b-bfea-454f-b706-3d5ef3dfd535",
+				"method": "POST"
+			},
+			{
+				"id": "f868a25b-aa57-47a0-b117-da7855cf68ee",
+				"method": "PUT"
+			},
+			{
+				"id": "205ff15b-f38c-4c11-83c1-3c795270e65a",
+				"method": "PUT"
+			},
+			{
+				"id": "b39e5b36-7fae-4f9f-9fc5-a2603428ea1b",
+				"method": "PUT"
+			},
+			{
+				"id": "e3d1de86-cb46-44a4-abc2-39f9f4867687",
+				"method": "PUT"
+			},
+			{
+				"id": "59c62817-b4cb-4d71-9dd1-e8c8dfd43ce0",
+				"method": "PUT"
+			},
+			{
+				"id": "9f71ad75-a061-4cab-8fd0-035a64d2596a",
+				"method": "POST"
+			},
+			{
+				"id": "0e87a81b-f3ce-480c-be11-342c223d92ab",
+				"method": "POST"
+			},
+			{
+				"id": "c47732af-306a-486f-a14f-53cb44be68ab",
+				"method": "GET"
+			},
+			{
+				"id": "05af8569-9830-4588-801f-17e097de3c6e",
+				"method": "PUT"
+			},
+			{
+				"id": "fbd159b0-0136-445c-b16b-6b90fe6f8476",
+				"method": "GET"
+			},
+			{
+				"id": "9ac46a4c-4727-41f1-804c-f8e01bb01633",
+				"method": "DELETE"
+			},
+			{
+				"id": "ecda06e9-561a-4a3c-b38b-4c0e452e822f",
+				"method": "GET"
+			}
+		]
+	}
+}
