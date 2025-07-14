@@ -22,37 +22,37 @@
 									"pm.environment.set(\"eToken\", jsonData.token);\r",
 									"console.log(\"Token : \" + pm.environment.get(\"eToken\"));\r",
 									"\r",
-									"// (i) Verify if the response code = 200\r",
+									"// 1. Verify if the response code = 200\r",
 									"pm.test('Verify if the response code = 200', function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
-									"// (ii) Verify if the response message = OK\r",
+									"// 2. Verify if the response message = OK\r",
 									"pm.test('Verify if the response message = OK', function () {\r",
 									"    pm.expect(pm.response.status).to.eql(\"OK\");\r",
 									"});\r",
 									"\r",
-									"// (iii) Verify if the response time from the server is < 2 seconds\r",
+									"// 3. Verify if the response time from the server is < 2 seconds\r",
 									"pm.test('Verify if the response time is < 2 seconds', function () {\r",
 									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
 									"});\r",
 									"\r",
-									"// (iv) Verify if the response body is received from server\r",
+									"// 4. Verify if the response body is received from server\r",
 									"pm.test('Verify if the response body is received from server', function () {\r",
 									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
 									"});\r",
 									"\r",
-									"// (v) Verify if the response header Content-Type is application/json\r",
+									"// 5. Verify if the response header Content-Type is application/json\r",
 									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
 									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
 									"});\r",
 									"\r",
-									"// (vi) Verify if the response body contains field `token`\r",
+									"// 6. Verify if the response body contains field `token`\r",
 									"pm.test('Verify if the response body contains field \"token\"', function () {\r",
 									"    pm.expect(jsonData).to.have.property(\"token\");\r",
 									"});\r",
 									"\r",
-									"// (vii) Verify if the token is a non-empty alphanumeric string\r",
+									"// 7. Verify if the token is a non-empty alphanumeric string\r",
 									"pm.test(\"Verify if the token format is a non-empty alphanumeric string\", function () {\r",
 									"    pm.expect(jsonData.token).to.match(/^[A-Za-z0-9]+$/);\r",
 									"});\r",
@@ -88,17 +88,7 @@
 									"pm.environment.set(\"eTotalPrice\", pm.variables.replaceIn('{{$randomInt}}'));\r",
 									"pm.environment.set(\"eUpdatedFirstName\", pm.variables.replaceIn('{{$randomFirstName}}'));\r",
 									"pm.environment.set(\"eUpdatedLastName\", pm.variables.replaceIn('{{$randomLastName}}'));\r",
-									"pm.environment.set(\"eUpdatedTotalPrice\", Math.floor(Math.random() * (500 - 100 + 1)) + 100);\r",
-									"\r",
-									"// console.log(\"BaseURL : \" + pm.environment.get(\"eBaseURL\"));\r",
-									"// console.log(\"FirstName : \" + pm.environment.get(\"eFirstName\"));\r",
-									"// console.log(\"LastName : \" + pm.environment.get(\"eLastName\"));\r",
-									"// console.log(\"TotalPrice : \" + pm.environment.get(\"eTotalPrice\"));\r",
-									"// console.log(\"Deposit Paid : \" + pm.environment.get(\"eDepositPaid\"));\r",
-									"// console.log(\"Updated FirstName : \" + pm.environment.get(\"eUpdatedFirstName\"));\r",
-									"// console.log(\"Updated LastName : \" + pm.environment.get(\"eUpdatedLastName\"));\r",
-									"// console.log(\"Updated Total Price : \" + pm.environment.get(\"eUpdatedTotalPrice\"));\r",
-									""
+									"pm.environment.set(\"eUpdatedTotalPrice\", Math.floor(Math.random() * (500 - 100 + 1)) + 100);"
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -321,12 +311,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://restful-booker.herokuapp.com/booking",
-							"protocol": "https",
+							"raw": "{{eBaseURL}}/booking",
 							"host": [
-								"restful-booker",
-								"herokuapp",
-								"com"
+								"{{eBaseURL}}"
 							],
 							"path": [
 								"booking"
@@ -1862,12 +1849,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking",
-									"protocol": "https",
+									"raw": "{{eBaseURL}}/booking",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{eBaseURL}}"
 									],
 									"path": [
 										"booking"
@@ -1927,12 +1911,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking",
-									"protocol": "https",
+									"raw": "{{eBaseURL}}/booking",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{eBaseURL}}"
 									],
 									"path": [
 										"booking"
@@ -1992,12 +1973,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking",
-									"protocol": "https",
+									"raw": "{{eBaseURL}}/booking",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{eBaseURL}}"
 									],
 									"path": [
 										"booking"
@@ -2051,12 +2029,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking",
-									"protocol": "https",
+									"raw": "{{eBaseURL}}/booking",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{eBaseURL}}"
 									],
 									"path": [
 										"booking"
@@ -2110,12 +2085,9 @@
 									}
 								},
 								"url": {
-									"raw": "https://restful-booker.herokuapp.com/booking",
-									"protocol": "https",
+									"raw": "{{eBaseURL}}/booking",
 									"host": [
-										"restful-booker",
-										"herokuapp",
-										"com"
+										"{{eBaseURL}}"
 									],
 									"path": [
 										"booking"
@@ -2728,12 +2700,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://restful-booker.herokuapp.com/booking",
-							"protocol": "https",
+							"raw": "{{eBaseURL}}/booking",
 							"host": [
-								"restful-booker",
-								"herokuapp",
-								"com"
+								"{{eBaseURL}}"
 							],
 							"path": [
 								"booking"
