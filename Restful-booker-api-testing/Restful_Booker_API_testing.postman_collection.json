@@ -1,0 +1,3369 @@
+{
+	"info": {
+		"_postman_id": "a37022ef-62bb-489b-a8d4-e8efef4f79d2",
+		"name": "Restful_Booker_API_testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29776566",
+		"_collection_link": "https://qa-team-9323.postman.co/workspace/8a4c73a3-4b7b-403d-a304-e50ccd770780/collection/29776566-a37022ef-62bb-489b-a8d4-e8efef4f79d2?action=share&source=collection_link&creator=29776566"
+	},
+	"item": [
+		{
+			"name": "Postive Testing",
+			"item": [
+				{
+					"name": "Auth - CreateToken",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Set environment variable for token\r",
+									"let jsonData = pm.response.json();\r",
+									"pm.environment.set(\"eToken\", jsonData.token);\r",
+									"console.log(\"Token : \" + pm.environment.get(\"eToken\"));\r",
+									"\r",
+									"// (i) Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// (ii) Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// (iii) Verify if the response time from the server is < 2 seconds\r",
+									"pm.test('Verify if the response time is < 2 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"// (iv) Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// (v) Verify if the response header Content-Type is application/json\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// (vi) Verify if the response body contains field `token`\r",
+									"pm.test('Verify if the response body contains field \"token\"', function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"token\");\r",
+									"});\r",
+									"\r",
+									"// (vii) Verify if the token is a non-empty alphanumeric string\r",
+									"pm.test(\"Verify if the token format is a non-empty alphanumeric string\", function () {\r",
+									"    pm.expect(jsonData.token).to.match(/^[A-Za-z0-9]+$/);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Delete the environmental variables\r",
+									"pm.environment.unset(\"eBaseURL\");\r",
+									"pm.environment.unset(\"eUserName\");\r",
+									"pm.environment.unset(\"ePassword\");\r",
+									"pm.environment.unset(\"eToken\");\r",
+									"pm.environment.unset(\"eFirstName\");\r",
+									"pm.environment.unset(\"eLastName\");\r",
+									"pm.environment.unset(\"eCreatedBookingId\");\r",
+									"pm.environment.unset(\"eUpdatedFirstName\");\r",
+									"pm.environment.unset(\"eUpdatedLastName\");\r",
+									"pm.environment.unset(\"eTotalPrice\");\r",
+									"pm.environment.unset(\"eUpdatedTotalPrice\");\r",
+									"\r",
+									"//Setting environment variable\r",
+									"pm.environment.set(\"eBaseURL\", \"https://restful-booker.herokuapp.com\");\r",
+									"pm.environment.set(\"eUserName\", \"admin\");\r",
+									"pm.environment.set(\"ePassword\", \"password123\");\r",
+									"pm.environment.set(\"eFirstName\", pm.variables.replaceIn('{{$randomFirstName}}'));\r",
+									"pm.environment.set(\"eLastName\", pm.variables.replaceIn('{{$randomLastName}}'));\r",
+									"pm.environment.set(\"eTotalPrice\", pm.variables.replaceIn('{{$randomInt}}'));\r",
+									"pm.environment.set(\"eUpdatedFirstName\", pm.variables.replaceIn('{{$randomFirstName}}'));\r",
+									"pm.environment.set(\"eUpdatedLastName\", pm.variables.replaceIn('{{$randomLastName}}'));\r",
+									"pm.environment.set(\"eUpdatedTotalPrice\", Math.floor(Math.random() * (500 - 100 + 1)) + 100);\r",
+									"\r",
+									"// console.log(\"BaseURL : \" + pm.environment.get(\"eBaseURL\"));\r",
+									"// console.log(\"FirstName : \" + pm.environment.get(\"eFirstName\"));\r",
+									"// console.log(\"LastName : \" + pm.environment.get(\"eLastName\"));\r",
+									"// console.log(\"TotalPrice : \" + pm.environment.get(\"eTotalPrice\"));\r",
+									"// console.log(\"Deposit Paid : \" + pm.environment.get(\"eDepositPaid\"));\r",
+									"// console.log(\"Updated FirstName : \" + pm.environment.get(\"eUpdatedFirstName\"));\r",
+									"// console.log(\"Updated LastName : \" + pm.environment.get(\"eUpdatedLastName\"));\r",
+									"// console.log(\"Updated Total Price : \" + pm.environment.get(\"eUpdatedTotalPrice\"));\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"{{eUserName}}\",\r\n    \"password\" : \"{{ePassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{eBaseURL}}/auth",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking - GetBookingIds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// 1. Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// 5. Verify Content-Type header\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if the response is an array\r",
+									"pm.test(\"Verify if the response is an array\", function () {\r",
+									"    pm.expect(jsonData).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"// 7. Verify if the first object contains bookingid key\r",
+									"pm.test(\"Verify if the first object contains bookingid key\", function () {\r",
+									"    if (jsonData.length > 0) {\r",
+									"        pm.expect(jsonData[0]).to.have.property(\"bookingid\");\r",
+									"        pm.expect(jsonData[0].bookingid).to.be.a(\"number\");\r",
+									"    } else {\r",
+									"        console.warn(\"Response array is empty — skipping bookingid check.\");\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"// 8. Verify all items in array have bookingid as number\r",
+									"pm.test(\"Verify all booking items have bookingid (number)\", function () {\r",
+									"    jsonData.forEach(item => {\r",
+									"        pm.expect(item).to.have.property(\"bookingid\");\r",
+									"        pm.expect(item.bookingid).to.be.a(\"number\");\r",
+									"    });\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{eBaseURL}}/booking",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking - CreateBooking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// Save booking ID to environment\r",
+									"pm.environment.set(\"eCreatedBookingId\", jsonData.bookingid);\r",
+									"\r",
+									"// 1. Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\"); // correct usage\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty; // corrected\r",
+									"});\r",
+									"\r",
+									"// 5. Verify Content-Type = application/json\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if the response is an object\r",
+									"pm.test(\"Verify if the response is an Object\", function () {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// 7. Check for bookingid and booking fields\r",
+									"pm.test(\"Verify if the response contains bookingid and booking fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"bookingid\");\r",
+									"    pm.expect(jsonData).to.have.property(\"booking\");\r",
+									"});\r",
+									"\r",
+									"// 8. Check if booking has expected fields\r",
+									"pm.test(\"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates, additionalneeds\", function () {\r",
+									"    [\"firstname\", \"lastname\", \"totalprice\", \"depositpaid\", \"bookingdates\", \"additionalneeds\"].forEach(field => {\r",
+									"        pm.expect(jsonData.booking).to.have.property(field);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// 9. Check if bookingdates has checkin and checkout\r",
+									"pm.test(\"Verify if bookingdates contains checkin and checkout keys\", function () {\r",
+									"    pm.expect(jsonData.booking.bookingdates).to.have.property(\"checkin\");\r",
+									"    pm.expect(jsonData.booking.bookingdates).to.have.property(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"// 10. Validate data types and date formats\r",
+									"pm.test(\"Verify if the booking details are in correct format\", function () {\r",
+									"    pm.expect(jsonData.booking.firstname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.booking.lastname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.booking.totalprice).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.booking.depositpaid).to.be.a(\"boolean\");\r",
+									"    pm.expect(jsonData.booking.bookingdates.checkin).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.booking.bookingdates.checkout).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.booking.additionalneeds).to.be.a(\"string\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"{{eFirstName}}\",\n    \"lastname\": \"{{eLastName}}\",\n    \"totalprice\": {{eTotalPrice}},\n    \"depositpaid\": true,\n    \"bookingdates\": {\n        \"checkin\": \"2018-01-01\",\n        \"checkout\": \"2019-01-01\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://restful-booker.herokuapp.com/booking",
+							"protocol": "https",
+							"host": [
+								"restful-booker",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking - GetBooking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// 1. Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\"); // Correct usage (was invalid before)\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 2 seconds\r",
+									"pm.test('Verify if the response time is < 2 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty; // Correct usage\r",
+									"});\r",
+									"\r",
+									"// 5. Verify Content-Type is JSON\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify response is an object\r",
+									"pm.test(\"Verify if the response is an Object\", function () {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// 7. Check for presence of required booking fields\r",
+									"pm.test(\"Verify booking contains all required fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"firstname\");\r",
+									"    pm.expect(jsonData).to.have.property(\"lastname\");\r",
+									"    pm.expect(jsonData).to.have.property(\"totalprice\");\r",
+									"    pm.expect(jsonData).to.have.property(\"depositpaid\");\r",
+									"    pm.expect(jsonData).to.have.property(\"bookingdates\");\r",
+									"    pm.expect(jsonData).to.have.property(\"additionalneeds\");\r",
+									"});\r",
+									"\r",
+									"// 8. Check if bookingdates contains checkin and checkout\r",
+									"pm.test(\"Verify bookingdates contains checkin and checkout\", function () {\r",
+									"    pm.expect(jsonData.bookingdates).to.have.property(\"checkin\");\r",
+									"    pm.expect(jsonData.bookingdates).to.have.property(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"// 9. Check field data types and date format\r",
+									"pm.test(\"Verify booking fields are in correct format\", function () {\r",
+									"    pm.expect(jsonData.firstname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.lastname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.totalprice).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.depositpaid).to.be.a(\"boolean\");\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.additionalneeds).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"// 10. Match actual values to expected values from environment/static\r",
+									"pm.test(\"Verify booking details match expected values\", function () {\r",
+									"    pm.expect(jsonData.firstname).to.eql(pm.environment.get(\"eFirstName\"));\r",
+									"    pm.expect(jsonData.lastname).to.eql(pm.environment.get(\"eLastName\"));\r",
+									"    pm.expect(jsonData.totalprice).to.eql(parseInt(pm.environment.get(\"eTotalPrice\")))\r",
+									"    pm.expect(jsonData.depositpaid).to.eql(true);\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.eql(\"2018-01-01\");\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.eql(\"2019-01-01\");\r",
+									"    pm.expect(jsonData.additionalneeds).to.eql(\"Breakfast\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{eBaseURL}}/booking/{{eCreatedBookingId}}",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"booking",
+								"{{eCreatedBookingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking - UpdateBooking",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// 1 Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// 5. Verify if the response header Content-Type=application/json\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if the response is an object\r",
+									"pm.test(\"Verify if the response is an Object\", function () {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// 7. Verify if the booking field has the firstname, lastname, totalprice, depositpaid, bookingdates\r",
+									"pm.test(\"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"firstname\");\r",
+									"    pm.expect(jsonData).to.have.property(\"lastname\");\r",
+									"    pm.expect(jsonData).to.have.property(\"totalprice\");\r",
+									"    pm.expect(jsonData).to.have.property(\"depositpaid\");\r",
+									"    pm.expect(jsonData).to.have.property(\"bookingdates\");\r",
+									"    pm.expect(jsonData).to.have.property(\"additionalneeds\");\r",
+									"});\r",
+									"\r",
+									"// 8. Verify if the booking dates field has the checkin and checkout fields\r",
+									"pm.test(\"Verify if the booking dates contains checkin and checkout keys\", function () {\r",
+									"    pm.expect(jsonData.bookingdates).to.have.property(\"checkin\");\r",
+									"    pm.expect(jsonData.bookingdates).to.have.property(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"// 9. Verify if the booking details are in correct format\r",
+									"pm.test(\"Verify if the booking details are in correct format\", function () {\r",
+									"    pm.expect(jsonData.firstname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.lastname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.totalprice).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.depositpaid).to.be.a(\"boolean\");\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.additionalneeds).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"// 10. Verify booking details match expected values\r",
+									"pm.test(\"Verify booking details match expected\", function () {\r",
+									"    pm.expect(jsonData.firstname).to.eql(pm.environment.get(\"eUpdatedFirstName\"));\r",
+									"    pm.expect(jsonData.lastname).to.eql(pm.environment.get(\"eUpdatedLastName\"));\r",
+									"    pm.expect(jsonData.totalprice).to.eql(parseInt(pm.environment.get(\"eTotalPrice\")));\r",
+									"    pm.expect(jsonData.depositpaid).to.eql(true);\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.eql(\"2018-01-01\");\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.eql(\"2019-01-01\");\r",
+									"    pm.expect(jsonData.additionalneeds).to.eql(\"Breakfast\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{eToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\" : \"{{eUpdatedFirstName}}\",\n    \"lastname\" : \"{{eUpdatedLastName}}\",\n    \"totalprice\" : {{eTotalPrice}},\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{eBaseURL}}/booking/{{eCreatedBookingId}}",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"booking",
+								"{{eCreatedBookingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking - PartialUpdateBooking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// 1 Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// 5. Verify if the response header Content-Type=application/json\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if the response is an object\r",
+									"pm.test(\"Verify if the response is an Object\", function () {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// 7. Verify if the booking field has the firstname, lastname, totalprice, depositpaid, bookingdates\r",
+									"pm.test(\"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"firstname\");\r",
+									"    pm.expect(jsonData).to.have.property(\"lastname\");\r",
+									"    pm.expect(jsonData).to.have.property(\"totalprice\");\r",
+									"    pm.expect(jsonData).to.have.property(\"depositpaid\");\r",
+									"    pm.expect(jsonData).to.have.property(\"bookingdates\");\r",
+									"    pm.expect(jsonData).to.have.property(\"additionalneeds\");\r",
+									"});\r",
+									"\r",
+									"// 8. Verify if the booking dates field has the checkin and checkout fields\r",
+									"pm.test(\"Verify if the booking dates contains checkin and checkout keys\", function () {\r",
+									"    pm.expect(jsonData.bookingdates).to.have.property(\"checkin\");\r",
+									"    pm.expect(jsonData.bookingdates).to.have.property(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"// 9. Verify if the booking details are in correct format\r",
+									"pm.test(\"Verify if the booking details are in correct format\", function () {\r",
+									"    pm.expect(jsonData.firstname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.lastname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.totalprice).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.depositpaid).to.be.a(\"boolean\");\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.additionalneeds).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"// 10. Verify booking details match expected values\r",
+									"pm.test(\"Verify booking details match expected\", function () {\r",
+									"    pm.expect(jsonData.firstname).to.eql(pm.environment.get(\"eUpdatedFirstName\"));\r",
+									"    pm.expect(jsonData.lastname).to.eql(pm.environment.get(\"eUpdatedLastName\"));\r",
+									"    pm.expect(jsonData.totalprice).to.eql(parseInt(pm.environment.get(\"eUpdatedTotalPrice\")));\r",
+									"    pm.expect(jsonData.depositpaid).to.eql(true);\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.eql(\"2018-01-01\");\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.eql(\"2019-01-01\");\r",
+									"    pm.expect(jsonData.additionalneeds).to.eql(\"Breakfast\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{eToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"totalprice\": {{eUpdatedTotalPrice}}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{eBaseURL}}/booking/{{eCreatedBookingId}}",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"booking",
+								"{{eCreatedBookingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking - DeleteBooking",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Checking status code before unsetting\r",
+									"if (pm.response.code === 201) {    \r",
+									"    pm.environment.unset(\"eBaseURL\");\r",
+									"    pm.environment.unset(\"eUserName\");\r",
+									"    pm.environment.unset(\"ePassword\");\r",
+									"    pm.environment.unset(\"eToken\");\r",
+									"    pm.environment.unset(\"eCreatedBookingId\");\r",
+									"    pm.environment.unset(\"eFirstName\");\r",
+									"    pm.environment.unset(\"eLastName\");\r",
+									"    pm.environment.unset(\"eUpdatedFirstName\");\r",
+									"    pm.environment.unset(\"eUpdatedLastName\");\r",
+									"    pm.environment.unset(\"eTotalPrice\");\r",
+									"    pm.environment.unset(\"eUpdatedTotalPrice\");\r",
+									"    pm.environment.unset(\"eBookingId\");\r",
+									"}\r",
+									"// 1. Verify if the response code is 201 (Created)\r",
+									"pm.test(\"Verify if the response code is 201 (Created)\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the status text is 'Created'\r",
+									"pm.test(\"Verify if the response status text = Created\", function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"Created\");\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test(\"Verify if the response body is received\", function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// 5. Verify if Content-Type is 'text/plain; charset=utf-8'\r",
+									"pm.test(\"Verify if Content-Type is text/plain\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"text/plain; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if response body contains 'Created'\r",
+									"pm.test(\"Verify if the response body contains text 'Created'\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Created\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{eToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{eBaseURL}}/booking/{{eCreatedBookingId}}",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"booking",
+								"{{eCreatedBookingId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Negative Testing",
+			"item": [
+				{
+					"name": "Invalid HTTP method",
+					"item": [
+						{
+							"name": "Auth - CreateToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"eToken\", pm.response.json().token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"eBaseURL\", \"https://restful-booker.herokuapp.com\");"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/auth",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Booking - GetBookingIds",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"eBookingId\", pm.response.json()[0].bookingid);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{eBaseURL}}/booking",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Booking - Invalid HTTP Method PUT",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"{{$randomFirstName}}\",\n    \"lastname\": \"{{$randomLastName}}\",\n    \"totalprice\": {{$randomInt}},\n    \"depositpaid\": {{$randomBoolean}},\n    \"bookingdates\": {\n        \"checkin\": \"2018-01-01\",\n        \"checkout\": \"2019-01-01\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/booking",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Booking - Invalid HTTP Method PATCH",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"{{$randomFirstName}}\",\n    \"lastname\": \"{{$randomLastName}}\",\n    \"totalprice\": {{$randomInt}},\n    \"depositpaid\": {{$randomBoolean}},\n    \"bookingdates\": {\n        \"checkin\": \"2018-01-01\",\n        \"checkout\": \"2019-01-01\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/booking",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Booking - Invalid HTTP DELETE",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"{{$randomFirstName}}\",\n    \"lastname\": \"{{$randomLastName}}\",\n    \"totalprice\": {{$randomInt}},\n    \"depositpaid\": {{$randomBoolean}},\n    \"bookingdates\": {\n        \"checkin\": \"2018-01-01\",\n        \"checkout\": \"2019-01-01\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/booking",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Booking - Invalid HTTP Method POST",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\" : \"{{$randomFirstName}}\",\n    \"lastname\" : \"{{$randomLastName}}\",\n    \"totalprice\" : {{$randomInt}},\n    \"depositpaid\" : {{$randomBoolean}},\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/booking/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PartialUpdateBooking - Invalid HTTP method POST",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"totalprice\": {{$randomInt}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/booking/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteBooking - Invalid HTTP Method POST",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"pm.environment.unset(\"eBookingId\"); // Unset the environment variable after the test to clean up\r",
+											"pm.environment.unset(\"eToken\"); // Unset the environment variable after the test to clean up\r",
+											"pm.environment.unset(\"eBaseURL\"); // Unset the environment variable after the test to clean up\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{eBaseURL}}/booking/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Broken End Point Testing",
+					"item": [
+						{
+							"name": "Auth - CreateToken",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"eToken\", pm.response.json().token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"eBaseURL\", \"https://restful-booker.herokuapp.com\");"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/auth",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Booking - GetBookingIds",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"eBookingId\", pm.response.json()[0].bookingid);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{eBaseURL}}/booking",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateBooking - Broken EndPoint",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"{{$randomFirstName}}\",\n    \"lastname\": \"{{$randomLastName}}\",\n    \"totalprice\": {{$randomInt}},\n    \"depositpaid\": {{$randomBoolean}},\n    \"bookingdates\": {\n        \"checkin\": \"2018-01-01\",\n        \"checkout\": \"2019-01-01\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/bookings",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"bookings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetBooking - Broken Endpoint",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{eBaseURL}}/bookings/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"bookings",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Booking - UpdateBooking",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\" : \"{{$randomFirstName}}\",\n    \"lastname\" : \"{{$randomLastName}}\",\n    \"totalprice\" : {{$randomInt}},\n    \"depositpaid\" : {{$randomBoolean}},\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/bookings/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"bookings",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Booking - PartialUpdateBooking",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"totalprice\": {{$randomInt}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/bookings/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"bookings",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Booking - DeleteBooking",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx client side error\r",
+											"pm.test('Verify if the response code is 404 Not Found client side error', function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"    pm.response.to.have.status(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Not Found\"\r",
+											"pm.test('Verify if the response body contains text \"Not Found\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Not Found\");\r",
+											"});\r",
+											"\r",
+											"pm.environment.unset(\"eBookingId\"); // Unset the environment variable after the test to clean up\r",
+											"pm.environment.unset(\"eToken\"); // Unset the environment variable after the test to clean up\r",
+											"pm.environment.unset(\"eBaseURL\"); // Unset the environment variable after the test to clean up\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{eBaseURL}}/bookings/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"bookings",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "Payload Temparing",
+					"item": [
+						{
+							"name": "Auth - CreateToken Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"eToken\", pm.response.json().token);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"eBaseURL\", \"https://restful-booker.herokuapp.com\");"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"{{eUserName}}\",\r\n    \"password\" : \"{{ePassword}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/auth",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Booking - GetBookingIds",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"eBookingId\", pm.response.json()[0].bookingid);\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{eBaseURL}}/booking",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateBooking Payload Tempering Invalid Data Type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 500 Internal Server Error\r",
+											"pm.test('Verify if the response code is 500 Internal Server Error', function () {\r",
+											"    pm.response.to.have.status(500);\r",
+											"    pm.response.to.have.status(\"Internal Server Error\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Internal Server Error\"\r",
+											"pm.test('Verify if the response body contains text \"Internal Server Error\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Internal Server Error\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": {{$randomInt}}, // Passing number as firstname\n    \"lastname\": \"{{eLastName}}\",\n    \"totalprice\": \"{{eTotalPrice}}\",\n    \"depositpaid\": \"{{eDepositPaid}}\",\n    \"bookingdates\": {\n        \"checkin\": \"{{eCheckinDate}}\",\n        \"checkout\": \"2019-01-01\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://restful-booker.herokuapp.com/booking",
+									"protocol": "https",
+									"host": [
+										"restful-booker",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateBooking Payload Tempering Invalid data length",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx Bad Request\r",
+											"pm.test('Verify if the response code is 400 Bad Request', function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Bad Request\"\r",
+											"pm.test('Verify if the response body contains text \"Bad Request\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Bad Request\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"{{eFirstName}}\", \n    \"lastname\": \"{{$randomLoremParagraphs}}\", // Passing large number of character as Last name\n    \"totalprice\": \"{{eTotalPrice}}\",\n    \"depositpaid\": \"{{eDepositPaid}}\",\n    \"bookingdates\": {\n        \"checkin\": \"2018-01-01\",\n        \"checkout\": \"2019-01-01\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://restful-booker.herokuapp.com/booking",
+									"protocol": "https",
+									"host": [
+										"restful-booker",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateBooking Payload Tempering - Firstname Field Missing in Payload",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 500 Internal Server Error\r",
+											"pm.test('Verify if the response code is 500 Internal Server Error', function () {\r",
+											"    pm.response.to.have.status(500);\r",
+											"    pm.response.to.have.status(\"Internal Server Error\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Internal Server Error\"\r",
+											"pm.test('Verify if the response body contains text \"Internal Server Error\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Internal Server Error\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    //missing first name\n    \"lastname\": \"{{eLastName}}\",\n    \"totalprice\": \"{{eTotalPrice}}\",\n    \"depositpaid\": \"{{eDepositPaid}}\",\n    \"bookingdates\": {\n        \"checkin\": \"{{eCheckinDate}}\",\n        \"checkout\": \"{{eCheckoutDate}}\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://restful-booker.herokuapp.com/booking",
+									"protocol": "https",
+									"host": [
+										"restful-booker",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateBooking Payload Tempering Additional Field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code has an error\r",
+											"pm.test('Verify if the response code has an error', function () {\r",
+											"    pm.response.to.have.error;\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"{{eFirstName}}\", \n    \"lastname\": \"{{eLastName}}\",\n    \"totalprice\": \"{{eTotalPrice}}\",\n    \"depositpaid\": \"{{eDepositPaid}}\",\n    \"bookingdates\": {\n        \"checkin\": \"{{eCheckinDate}}\",\n        \"checkout\": \"{{eCheckoutDate}}\"\n    },\n    \"additionalneeds\": \"Breakfast\",\n    \"advancedAmount\" : \"1000\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://restful-booker.herokuapp.com/booking",
+									"protocol": "https",
+									"host": [
+										"restful-booker",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateBooking Payload Tempering - Empty Fields",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code has an error\r",
+											"pm.test('Verify if the response code has an error', function () {\r",
+											"    pm.response.to.have.error;\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"\", \n    \"lastname\": \"\",\n    \"totalprice\": \"\",\n    \"depositpaid\": \"\",\n    \"bookingdates\": {\n        \"checkin\": \"\",\n        \"checkout\": \"\"\n    },\n    \"additionalneeds\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://restful-booker.herokuapp.com/booking",
+									"protocol": "https",
+									"host": [
+										"restful-booker",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"booking"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateBooking Payload Tempering Invalid Data Type",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx Bad Request\r",
+											"pm.test('Verify if the response code is 400 Bad Request', function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Bad Request\"\r",
+											"pm.test('Verify if the response body contains text \"Bad Request\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Bad Request\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": {{$randomInt}}, // Passing number as firstname\n    \"lastname\" : \"{{eUpdatedLastName}}\",\n    \"totalprice\" : {{eTotalPrice}},\n    \"depositpaid\" : {{eDepositPaid}},\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/booking/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateBooking  Payload Tempering Invalid data length",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx Bad Request\r",
+											"pm.test('Verify if the response code is 400 Bad Request', function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Bad Request\"\r",
+											"pm.test('Verify if the response body contains text \"Bad Request\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Bad Request\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"{{eFirstName}}\", \n    \"lastname\": \"{{$randomLoremParagraphs}}\", // Passing large number of character as Last name\n    \"totalprice\" : {{eTotalPrice}},\n    \"depositpaid\" : {{eDepositPaid}},\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/booking/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateBooking Payload Tempering - Firstname Field Missing in Payload",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code is 4xx Bad Request\r",
+											"pm.test('Verify if the response code is 400 Bad Request', function () {\r",
+											"    pm.response.to.have.status(400);\r",
+											"    pm.response.to.have.status(\"Bad Request\");\r",
+											"});\r",
+											"\r",
+											"// 2. Verify if the response body contains text \"Bad Request\"\r",
+											"pm.test('Verify if the response body contains text \"Bad Request\"', function () {\r",
+											"    pm.expect(pm.response.text()).to.include(\"Bad Request\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    //missing first name\n    \"lastname\": \"{{eLastName}}\",\n    \"totalprice\" : {{eTotalPrice}},\n    \"depositpaid\" : {{eDepositPaid}},\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/booking/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateBooking Payload Tempering Additional Field",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code has an error\r",
+											"pm.test('Verify if the response code has an error', function () {\r",
+											"    pm.response.to.have.error;\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\" : \"{{eUpdatedFirstName}}\",\n    \"lastname\" : \"{{eUpdatedLastName}}\",\n    \"totalprice\" : {{eTotalPrice}},\n    \"depositpaid\" : {{eDepositPaid}},\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\",\n    \"advancedAmount\" : \"1000\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/booking/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateBooking Payload Tempering - Empty Fields",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// 1. Verify if the response code has an error\r",
+											"pm.test('Verify if the response code has an error', function () {\r",
+											"    pm.response.to.have.error;\r",
+											"});\r",
+											"\r",
+											"pm.environment.unset(\"eBookingId\"); // Unset the environment variable after the test to clean up\r",
+											"pm.environment.unset(\"eToken\"); // Unset the environment variable after the test to clean up\r",
+											"pm.environment.unset(\"eBaseURL\"); // Unset the environment variable after the test to clean up\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Cookie",
+										"value": "token={{eToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"firstname\": \"\",\n    \"lastname\": \"\",\n    \"totalprice\": \"\",\n    \"depositpaid\": \"\",\n    \"bookingdates\": {\n        \"checkin\": \"\",\n        \"checkout\": \"\"\n    },\n    \"additionalneeds\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{eBaseURL}}/booking/{{eBookingId}}",
+									"host": [
+										"{{eBaseURL}}"
+									],
+									"path": [
+										"booking",
+										"{{eBookingId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "E2E API Automation",
+			"item": [
+				{
+					"name": "CREATE TOKEN",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Set environment variable for token\r",
+									"let jsonData = pm.response.json();\r",
+									"pm.environment.set(\"eToken\", jsonData.token);\r",
+									"\r",
+									"// 1. Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time from the server is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// 5. Verify if the response header Content-Type is application/json\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if the response body contains field `token`\r",
+									"pm.test('Verify if the response body contains field \"token\"', function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"token\");\r",
+									"});\r",
+									"\r",
+									"// 7. Verify if the token is a non-empty alphanumeric string\r",
+									"pm.test(\"Verify if the token format is a non-empty alphanumeric string\", function () {\r",
+									"    pm.expect(jsonData.token).to.match(/^[A-Za-z0-9]+$/);\r",
+									"});\r",
+									"\r",
+									"if (pm.response.code == 200){\r",
+									"    console.log(pm.info.requestName + \" API passed.\")\r",
+									"    pm.execution.setNextRequest(\"CREATE NEW BOOKING\")\r",
+									"} else{\r",
+									"    console.log(pm.info.requestName + \" API failed.\")\r",
+									"    pm.execution.setNextRequest(\"\")\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// Delete the environmental variables\r",
+									"pm.environment.unset(\"eBaseURL\");\r",
+									"pm.environment.unset(\"eUserName\");\r",
+									"pm.environment.unset(\"ePassword\");\r",
+									"pm.environment.unset(\"eToken\");\r",
+									"pm.environment.unset(\"eFirstName\");\r",
+									"pm.environment.unset(\"eLastName\");\r",
+									"pm.environment.unset(\"eCreatedBookingId\");\r",
+									"pm.environment.unset(\"eUpdatedFirstName\");\r",
+									"pm.environment.unset(\"eUpdatedLastName\");\r",
+									"pm.environment.unset(\"eTotalPrice\");\r",
+									"\r",
+									"//Setting environment variable\r",
+									"pm.environment.set(\"eBaseURL\", \"https://restful-booker.herokuapp.com\");\r",
+									"pm.environment.set(\"eUserName\", \"admin\");\r",
+									"pm.environment.set(\"ePassword\", \"password123\");\r",
+									"pm.environment.set(\"eFirstName\", pm.variables.replaceIn('{{$randomFirstName}}'));\r",
+									"pm.environment.set(\"eLastName\", pm.variables.replaceIn('{{$randomLastName}}'));\r",
+									"pm.environment.set(\"eUpdatedFirstName\", pm.variables.replaceIn('{{$randomFirstName}}'));\r",
+									"pm.environment.set(\"eUpdatedLastName\", pm.variables.replaceIn('{{$randomLastName}}'));\r",
+									"pm.environment.set(\"eTotalPrice\", Math.floor(Math.random() * (500 - 100 + 1)) + 100);\r",
+									"pm.environment.set(\"eUpdatedTotalPrice\", Math.floor(Math.random() * (500 - 100 + 1)) + 100);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"{{eUserName}}\",\r\n    \"password\" : \"{{ePassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{eBaseURL}}/auth",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE NEW BOOKING",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// Save booking ID to environment\r",
+									"pm.environment.set(\"eCreatedBookingId\", jsonData.bookingid);\r",
+									"\r",
+									"// 1. Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\"); // correct usage\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty; // corrected\r",
+									"});\r",
+									"\r",
+									"// 5. Verify Content-Type = application/json\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if the response is an object\r",
+									"pm.test(\"Verify if the response is an Object\", function () {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// 7. Check for bookingid and booking fields\r",
+									"pm.test(\"Verify if the response contains bookingid and booking fields\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"bookingid\");\r",
+									"    pm.expect(jsonData).to.have.property(\"booking\");\r",
+									"});\r",
+									"\r",
+									"// 8. Check if booking has expected fields\r",
+									"pm.test(\"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates, additionalneeds\", function () {\r",
+									"    [\"firstname\", \"lastname\", \"totalprice\", \"depositpaid\", \"bookingdates\", \"additionalneeds\"].forEach(field => {\r",
+									"        pm.expect(jsonData.booking).to.have.property(field);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// 9. Check if bookingdates has checkin and checkout\r",
+									"pm.test(\"Verify if bookingdates contains checkin and checkout keys\", function () {\r",
+									"    pm.expect(jsonData.booking.bookingdates).to.have.property(\"checkin\");\r",
+									"    pm.expect(jsonData.booking.bookingdates).to.have.property(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"// 10. Validate data types and date formats\r",
+									"pm.test(\"Verify if the booking details are in correct format\", function () {\r",
+									"    pm.expect(jsonData.booking.firstname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.booking.lastname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.booking.totalprice).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.booking.depositpaid).to.be.a(\"boolean\");\r",
+									"    pm.expect(jsonData.booking.bookingdates.checkin).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.booking.bookingdates.checkout).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.booking.additionalneeds).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"if (pm.response.code == 200){\r",
+									"    console.log(pm.info.requestName + \" API passed.\")\r",
+									"    pm.execution.setNextRequest(\"VERIFY IF BOOKING CREATED\")\r",
+									"} else{\r",
+									"    console.log(pm.info.requestName + \" API failed.\")\r",
+									"    pm.execution.setNextRequest(\"\")\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\": \"{{eFirstName}}\",\n    \"lastname\": \"{{eLastName}}\",\n    \"totalprice\": {{eTotalPrice}},\n    \"depositpaid\": true,\n    \"bookingdates\": {\n        \"checkin\": \"2018-01-01\",\n        \"checkout\": \"2019-01-01\"\n    },\n    \"additionalneeds\": \"Breakfast\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://restful-booker.herokuapp.com/booking",
+							"protocol": "https",
+							"host": [
+								"restful-booker",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VERIFY IF BOOKING CREATED",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// 1. Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// 5. Verify Content-Type header\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if the response is an array\r",
+									"pm.test(\"Verify if the response is an array\", function () {\r",
+									"    pm.expect(jsonData).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"// 7. Verify if the first object contains bookingid key\r",
+									"pm.test(\"Verify if the first object contains bookingid key\", function () {\r",
+									"    if (jsonData.length > 0) {\r",
+									"        pm.expect(jsonData[0]).to.have.property(\"bookingid\");\r",
+									"        pm.expect(jsonData[0].bookingid).to.be.a(\"number\");\r",
+									"    } else {\r",
+									"        console.warn(\"Response array is empty — skipping bookingid check.\");\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"// 8. Verify all items in array have bookingid as number\r",
+									"pm.test(\"Verify all booking items have bookingid (number)\", function () {\r",
+									"    jsonData.forEach(item => {\r",
+									"        pm.expect(item).to.have.property(\"bookingid\");\r",
+									"        pm.expect(item.bookingid).to.be.a(\"number\");\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// (9) Verify if the booking is created with bookingid\r",
+									"let expectedId = parseInt(pm.environment.get(\"eCreatedBookingId\"));\r",
+									"pm.test(\"Verify if the booking is created with bookingid = \" +expectedId, function () {\r",
+									"    const found = jsonData.some(booking => booking.bookingid === expectedId);\r",
+									"    pm.expect(found).to.be.true;\r",
+									"});\r",
+									"\r",
+									"if (pm.response.code == 200){\r",
+									"    console.log(pm.info.requestName + \" API passed.\")\r",
+									"    pm.execution.setNextRequest(\"UPDATE THE BOOKING\")\r",
+									"} else{\r",
+									"    console.log(pm.info.requestName + \" API failed.\")\r",
+									"    pm.execution.setNextRequest(\"\")\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{eBaseURL}}/booking",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE THE BOOKING",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// 1 Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// 5. Verify if the response header Content-Type=application/json\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if the response is an object\r",
+									"pm.test(\"Verify if the response is an Object\", function () {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// 7. Verify if the booking field has the firstname, lastname, totalprice, depositpaid, bookingdates\r",
+									"pm.test(\"Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates\", function () {\r",
+									"    pm.expect(jsonData).to.have.property(\"firstname\");\r",
+									"    pm.expect(jsonData).to.have.property(\"lastname\");\r",
+									"    pm.expect(jsonData).to.have.property(\"totalprice\");\r",
+									"    pm.expect(jsonData).to.have.property(\"depositpaid\");\r",
+									"    pm.expect(jsonData).to.have.property(\"bookingdates\");\r",
+									"    pm.expect(jsonData).to.have.property(\"additionalneeds\");\r",
+									"});\r",
+									"\r",
+									"// 8. Verify if the booking dates field has the checkin and checkout fields\r",
+									"pm.test(\"Verify if the booking dates contains checkin and checkout keys\", function () {\r",
+									"    pm.expect(jsonData.bookingdates).to.have.property(\"checkin\");\r",
+									"    pm.expect(jsonData.bookingdates).to.have.property(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"// 9. Verify if the booking details are in correct format\r",
+									"pm.test(\"Verify if the booking details are in correct format\", function () {\r",
+									"    pm.expect(jsonData.firstname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.lastname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.totalprice).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.depositpaid).to.be.a(\"boolean\");\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.additionalneeds).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"// 10. Verify booking details match expected values\r",
+									"pm.test(\"Verify booking details match expected\", function () {\r",
+									"    pm.expect(jsonData.firstname).to.eql(pm.environment.get(\"eUpdatedFirstName\"));\r",
+									"    pm.expect(jsonData.lastname).to.eql(pm.environment.get(\"eUpdatedLastName\"));\r",
+									"    pm.expect(jsonData.totalprice).to.eql(parseInt(pm.environment.get(\"eUpdatedTotalPrice\")));\r",
+									"    pm.expect(jsonData.depositpaid).to.eql(true);\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.eql(\"2018-01-01\");\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.eql(\"2019-01-01\");\r",
+									"    pm.expect(jsonData.additionalneeds).to.eql(\"Breakfast\");\r",
+									"});\r",
+									"\r",
+									"if (pm.response.code == 200){\r",
+									"    console.log(pm.info.requestName + \" API passed.\")\r",
+									"    pm.execution.setNextRequest(\"VERIFY IF BOOKING IS UPDATED\")\r",
+									"} else{\r",
+									"    console.log(pm.info.requestName + \" API failed.\")\r",
+									"    pm.execution.setNextRequest(\"\")\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{eToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstname\" : \"{{eUpdatedFirstName}}\",\n    \"lastname\" : \"{{eUpdatedLastName}}\",\n    \"totalprice\" : {{eUpdatedTotalPrice}},\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{eBaseURL}}/booking/{{eCreatedBookingId}}",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"booking",
+								"{{eCreatedBookingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VERIFY IF BOOKING IS UPDATED",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// 1. Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\"); // Correct usage (was invalid before)\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty; // Correct usage\r",
+									"});\r",
+									"\r",
+									"// 5. Verify Content-Type is JSON\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6.  Verify response is an object\r",
+									"pm.test(\"Verify if the response is an Object\", function () {\r",
+									"    pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// 7.  Check for presence of required booking fields\r",
+									"pm.test(\"Verify booking contains all required fields\", function () {\r",
+									"    [\"firstname\", \"lastname\", \"totalprice\", \"depositpaid\", \"bookingdates\", \"additionalneeds\"].forEach(field => {\r",
+									"        pm.expect(jsonData).to.have.property(field);\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// 8. Check if bookingdates contains checkin and checkout\r",
+									"pm.test(\"Verify bookingdates contains checkin and checkout\", function () {\r",
+									"    pm.expect(jsonData.bookingdates).to.have.property(\"checkin\");\r",
+									"    pm.expect(jsonData.bookingdates).to.have.property(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"// 9. Check field data types and date format\r",
+									"pm.test(\"Verify booking fields are in correct format\", function () {\r",
+									"    pm.expect(jsonData.firstname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.lastname).to.be.a(\"string\");\r",
+									"    pm.expect(jsonData.totalprice).to.be.a(\"number\");\r",
+									"    pm.expect(jsonData.depositpaid).to.be.a(\"boolean\");\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+									"    pm.expect(jsonData.additionalneeds).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"// 10. Verify booking is updated with firstname\r",
+									"pm.test(\"Verify booking is updated with firstname=\" +pm.environment.get(\"eUpdatedFirstName\"), function () {\r",
+									"    pm.expect(jsonData.firstname).to.eql(pm.environment.get(\"eUpdatedFirstName\"));\r",
+									"    pm.expect(jsonData.lastname).to.eql(pm.environment.get(\"eUpdatedLastName\"));\r",
+									"    pm.expect(jsonData.totalprice).to.eql(parseInt(pm.environment.get(\"eUpdatedTotalPrice\")));\r",
+									"    pm.expect(jsonData.depositpaid).to.eql(true);\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.eql(\"2018-01-01\");\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.eql(\"2019-01-01\");\r",
+									"    pm.expect(jsonData.additionalneeds).to.eql(\"Breakfast\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// 11. Verify booking is updated with lastname\r",
+									"pm.test(\"Verify booking is updated with lastname=\" +pm.environment.get(\"eUpdatedLastName\"), function () {\r",
+									"    pm.expect(jsonData.firstname).to.eql(pm.environment.get(\"eUpdatedFirstName\"));\r",
+									"    pm.expect(jsonData.lastname).to.eql(pm.environment.get(\"eUpdatedLastName\"));\r",
+									"    pm.expect(jsonData.totalprice).to.eql(parseInt(pm.environment.get(\"eUpdatedTotalPrice\")));\r",
+									"    pm.expect(jsonData.depositpaid).to.eql(true);\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.eql(\"2018-01-01\");\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.eql(\"2019-01-01\");\r",
+									"    pm.expect(jsonData.additionalneeds).to.eql(\"Breakfast\");\r",
+									"});\r",
+									"\r",
+									"// 12. Verify booking is updated with total price\r",
+									"pm.test(\"Verify booking is updated with total price=\" +pm.environment.get(\"eUpdatedTotalPrice\"), function () {\r",
+									"    pm.expect(jsonData.firstname).to.eql(pm.environment.get(\"eUpdatedFirstName\"));\r",
+									"    pm.expect(jsonData.lastname).to.eql(pm.environment.get(\"eUpdatedLastName\"));\r",
+									"    pm.expect(jsonData.totalprice).to.eql(parseInt(pm.environment.get(\"eUpdatedTotalPrice\")));\r",
+									"    pm.expect(jsonData.depositpaid).to.eql(true);\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.eql(\"2018-01-01\");\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.eql(\"2019-01-01\");\r",
+									"    pm.expect(jsonData.additionalneeds).to.eql(\"Breakfast\");\r",
+									"});\r",
+									"\r",
+									"// 13. Match actual values to expected values from environment/static\r",
+									"pm.test(\"Verify booking details match expected values\", function () {\r",
+									"    pm.expect(jsonData.firstname).to.eql(pm.environment.get(\"eUpdatedFirstName\"));\r",
+									"    pm.expect(jsonData.lastname).to.eql(pm.environment.get(\"eUpdatedLastName\"));\r",
+									"    pm.expect(jsonData.totalprice).to.eql(parseInt(pm.environment.get(\"eUpdatedTotalPrice\")));\r",
+									"    pm.expect(jsonData.depositpaid).to.eql(true);\r",
+									"    pm.expect(jsonData.bookingdates.checkin).to.eql(\"2018-01-01\");\r",
+									"    pm.expect(jsonData.bookingdates.checkout).to.eql(\"2019-01-01\");\r",
+									"    pm.expect(jsonData.additionalneeds).to.eql(\"Breakfast\");\r",
+									"});\r",
+									"\r",
+									"if (pm.response.code == 200){\r",
+									"    console.log(pm.info.requestName + \" API passed.\")\r",
+									"    pm.execution.setNextRequest(\"DELETE THE BOOKING\")\r",
+									"} else{\r",
+									"    console.log(pm.info.requestName + \" API failed.\")\r",
+									"    pm.execution.setNextRequest(\"\")\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{eBaseURL}}/booking/{{eCreatedBookingId}}",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"booking",
+								"{{eCreatedBookingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE THE BOOKING",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// 1. Verify if the response code is 201 (Created)\r",
+									"pm.test(\"Verify if the response code is 201 (Created)\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the status text is 'Created'\r",
+									"pm.test(\"Verify if the response status text = Created\", function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"Created\");\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test(\"Verify if the response body is received\", function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// 5. Verify if Content-Type is 'text/plain; charset=utf-8'\r",
+									"pm.test(\"Verify if Content-Type is text/plain\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"text/plain; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if response body contains 'Created'\r",
+									"pm.test(\"Verify if the response body contains text 'Created'\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Created\");\r",
+									"});\r",
+									"\r",
+									"if (pm.response.code == 201){\r",
+									"    console.log(pm.info.requestName + \" API passed.\")\r",
+									"    pm.execution.setNextRequest(\"VERIFY IF BOOKING IS DELETED\")\r",
+									"} else{\r",
+									"    console.log(pm.info.requestName + \" API failed.\")\r",
+									"    pm.execution.setNextRequest(\"\")\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Cookie",
+								"value": "token={{eToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{eBaseURL}}/booking/{{eCreatedBookingId}}",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"booking",
+								"{{eCreatedBookingId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VERIFY IF BOOKING IS DELETED",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// 1. Verify if the response code = 200\r",
+									"pm.test('Verify if the response code = 200', function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// 2. Verify if the response message = OK\r",
+									"pm.test('Verify if the response message = OK', function () {\r",
+									"    pm.expect(pm.response.status).to.eql(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// 3. Verify if the response time is < 3 seconds\r",
+									"pm.test('Verify if the response time is < 3 seconds', function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"// 4. Verify if the response body is received from server\r",
+									"pm.test('Verify if the response body is received from server', function () {\r",
+									"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"// 5. Verify Content-Type header\r",
+									"pm.test('Verify if the response header Content-Type=application/json', function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"// 6. Verify if the response is an array\r",
+									"pm.test(\"Verify if the response is an array\", function () {\r",
+									"    pm.expect(jsonData).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"// 7. Verify if the first object contains bookingid key\r",
+									"pm.test(\"Verify if the first object contains bookingid key\", function () {\r",
+									"    if (jsonData.length > 0) {\r",
+									"        pm.expect(jsonData[0]).to.have.property(\"bookingid\");\r",
+									"        pm.expect(jsonData[0].bookingid).to.be.a(\"number\");\r",
+									"    } else {\r",
+									"        console.warn(\"Response array is empty — skipping bookingid check.\");\r",
+									"    }\r",
+									"});\r",
+									"\r",
+									"// 8. Verify all items in array have bookingid as number\r",
+									"pm.test(\"Verify all booking items have bookingid (number)\", function () {\r",
+									"    jsonData.forEach(item => {\r",
+									"        pm.expect(item).to.have.property(\"bookingid\");\r",
+									"        pm.expect(item.bookingid).to.be.a(\"number\");\r",
+									"    });\r",
+									"});\r",
+									"\r",
+									"// 9. Verify if the booking is deleted with bookingid\r",
+									"let expectedValue = parseInt(pm.environment.get(\"eCreatedBookingId\"));\r",
+									"pm.test(\"Verify if the booking is deleted with bookingid = \" +expectedValue, function () {\r",
+									"    const found = jsonData.some(booking => booking.booking === expectedValue);\r",
+									"    pm.expect(found).to.be.false;\r",
+									"});\r",
+									"\r",
+									"if (pm.response.code == 200){\r",
+									"    console.log(pm.info.requestName + \" API passed.\")\r",
+									"    pm.execution.setNextRequest()\r",
+									"} else{\r",
+									"    console.log(pm.info.requestName + \" API failed.\")\r",
+									"    pm.execution.setNextRequest(\"\")\r",
+									"}\r",
+									"\r",
+									"// Delete the environmental variables\r",
+									"pm.environment.unset(\"eBaseURL\");\r",
+									"pm.environment.unset(\"eUserName\");\r",
+									"pm.environment.unset(\"ePassword\");\r",
+									"pm.environment.unset(\"eToken\");\r",
+									"pm.environment.unset(\"eFirstName\");\r",
+									"pm.environment.unset(\"eLastName\");\r",
+									"pm.environment.unset(\"eCreatedBookingId\");\r",
+									"pm.environment.unset(\"eUpdatedFirstName\");\r",
+									"pm.environment.unset(\"eUpdatedLastName\");\r",
+									"pm.environment.unset(\"eTotalPrice\");\r",
+									"pm.environment.unset(\"eUpdatedTotalPrice\");"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{eBaseURL}}/booking",
+							"host": [
+								"{{eBaseURL}}"
+							],
+							"path": [
+								"booking"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
