@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Restful_Booker_API_testing" tests="41" time="9.879">
+  <testsuite name="Postive Testing / Auth - CreateToken" id="c472a3ad-d88b-4452-8f96-bf1282b1a21d" timestamp="2025-07-14T19:13:50.467Z" tests="7" failures="0" errors="0" time="1.075">
+    <testcase name="Verify if the response code = 200" time="1.075" classname="PostiveTestingAuthCreateToken"/>
+    <testcase name="Verify if the response message = OK" time="1.075" classname="PostiveTestingAuthCreateToken"/>
+    <testcase name="Verify if the response time is &lt; 2 seconds" time="1.075" classname="PostiveTestingAuthCreateToken"/>
+    <testcase name="Verify if the response body is received from server" time="1.075" classname="PostiveTestingAuthCreateToken"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="1.075" classname="PostiveTestingAuthCreateToken"/>
+    <testcase name="Verify if the response body contains field &quot;token&quot;" time="1.075" classname="PostiveTestingAuthCreateToken"/>
+    <testcase name="Verify if the token format is a non-empty alphanumeric string" time="1.075" classname="PostiveTestingAuthCreateToken"/>
+  </testsuite>
+  <testsuite name="Postive Testing / Booking - GetBookingIds" id="1555214d-0a48-4c0f-b223-595b6e3c79eb" timestamp="2025-07-14T19:13:50.467Z" tests="8" failures="0" errors="0" time="0.416">
+    <testcase name="Verify if the response code = 200" time="0.416" classname="PostiveTestingBookingGetBookingIds"/>
+    <testcase name="Verify if the response message = OK" time="0.416" classname="PostiveTestingBookingGetBookingIds"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.416" classname="PostiveTestingBookingGetBookingIds"/>
+    <testcase name="Verify if the response body is received from server" time="0.416" classname="PostiveTestingBookingGetBookingIds"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.416" classname="PostiveTestingBookingGetBookingIds"/>
+    <testcase name="Verify if the response is an array" time="0.416" classname="PostiveTestingBookingGetBookingIds"/>
+    <testcase name="Verify if the first object contains bookingid key" time="0.416" classname="PostiveTestingBookingGetBookingIds"/>
+    <testcase name="Verify all booking items have bookingid (number)" time="0.416" classname="PostiveTestingBookingGetBookingIds"/>
+  </testsuite>
+  <testsuite name="Postive Testing / Booking - CreateBooking" id="aee48da4-377e-421d-81b0-ffe03b8fabd3" timestamp="2025-07-14T19:13:50.467Z" tests="10" failures="0" errors="0" time="0.211">
+    <testcase name="Verify if the response code = 200" time="0.211" classname="PostiveTestingBookingCreateBooking"/>
+    <testcase name="Verify if the response message = OK" time="0.211" classname="PostiveTestingBookingCreateBooking"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.211" classname="PostiveTestingBookingCreateBooking"/>
+    <testcase name="Verify if the response body is received from server" time="0.211" classname="PostiveTestingBookingCreateBooking"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.211" classname="PostiveTestingBookingCreateBooking"/>
+    <testcase name="Verify if the response is an Object" time="0.211" classname="PostiveTestingBookingCreateBooking"/>
+    <testcase name="Verify if the response contains bookingid and booking fields" time="0.211" classname="PostiveTestingBookingCreateBooking"/>
+    <testcase name="Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates, additionalneeds" time="0.211" classname="PostiveTestingBookingCreateBooking"/>
+    <testcase name="Verify if bookingdates contains checkin and checkout keys" time="0.211" classname="PostiveTestingBookingCreateBooking"/>
+    <testcase name="Verify if the booking details are in correct format" time="0.211" classname="PostiveTestingBookingCreateBooking"/>
+  </testsuite>
+  <testsuite name="Postive Testing / Booking - GetBooking" id="e64a3360-3375-4c3f-afd5-d794a0e37051" timestamp="2025-07-14T19:13:50.467Z" tests="10" failures="0" errors="0" time="0.209">
+    <testcase name="Verify if the response code = 200" time="0.209" classname="PostiveTestingBookingGetBooking"/>
+    <testcase name="Verify if the response message = OK" time="0.209" classname="PostiveTestingBookingGetBooking"/>
+    <testcase name="Verify if the response time is &lt; 2 seconds" time="0.209" classname="PostiveTestingBookingGetBooking"/>
+    <testcase name="Verify if the response body is received from server" time="0.209" classname="PostiveTestingBookingGetBooking"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.209" classname="PostiveTestingBookingGetBooking"/>
+    <testcase name="Verify if the response is an Object" time="0.209" classname="PostiveTestingBookingGetBooking"/>
+    <testcase name="Verify booking contains all required fields" time="0.209" classname="PostiveTestingBookingGetBooking"/>
+    <testcase name="Verify bookingdates contains checkin and checkout" time="0.209" classname="PostiveTestingBookingGetBooking"/>
+    <testcase name="Verify booking fields are in correct format" time="0.209" classname="PostiveTestingBookingGetBooking"/>
+    <testcase name="Verify booking details match expected values" time="0.209" classname="PostiveTestingBookingGetBooking"/>
+  </testsuite>
+  <testsuite name="Postive Testing / Booking - UpdateBooking" id="27639fc0-7d7e-444c-9d87-0c47a5499d2c" timestamp="2025-07-14T19:13:50.467Z" tests="10" failures="0" errors="0" time="0.212">
+    <testcase name="Verify if the response code = 200" time="0.212" classname="PostiveTestingBookingUpdateBooking"/>
+    <testcase name="Verify if the response message = OK" time="0.212" classname="PostiveTestingBookingUpdateBooking"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.212" classname="PostiveTestingBookingUpdateBooking"/>
+    <testcase name="Verify if the response body is received from server" time="0.212" classname="PostiveTestingBookingUpdateBooking"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.212" classname="PostiveTestingBookingUpdateBooking"/>
+    <testcase name="Verify if the response is an Object" time="0.212" classname="PostiveTestingBookingUpdateBooking"/>
+    <testcase name="Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates" time="0.212" classname="PostiveTestingBookingUpdateBooking"/>
+    <testcase name="Verify if the booking dates contains checkin and checkout keys" time="0.212" classname="PostiveTestingBookingUpdateBooking"/>
+    <testcase name="Verify if the booking details are in correct format" time="0.212" classname="PostiveTestingBookingUpdateBooking"/>
+    <testcase name="Verify booking details match expected" time="0.212" classname="PostiveTestingBookingUpdateBooking"/>
+  </testsuite>
+  <testsuite name="Postive Testing / Booking - PartialUpdateBooking" id="72b2191c-ca27-470e-b3f0-8b11f16dde77" timestamp="2025-07-14T19:13:50.467Z" tests="10" failures="0" errors="0" time="0.209">
+    <testcase name="Verify if the response code = 200" time="0.209" classname="PostiveTestingBookingPartialUpdateBooking"/>
+    <testcase name="Verify if the response message = OK" time="0.209" classname="PostiveTestingBookingPartialUpdateBooking"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.209" classname="PostiveTestingBookingPartialUpdateBooking"/>
+    <testcase name="Verify if the response body is received from server" time="0.209" classname="PostiveTestingBookingPartialUpdateBooking"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.209" classname="PostiveTestingBookingPartialUpdateBooking"/>
+    <testcase name="Verify if the response is an Object" time="0.209" classname="PostiveTestingBookingPartialUpdateBooking"/>
+    <testcase name="Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates" time="0.209" classname="PostiveTestingBookingPartialUpdateBooking"/>
+    <testcase name="Verify if the booking dates contains checkin and checkout keys" time="0.209" classname="PostiveTestingBookingPartialUpdateBooking"/>
+    <testcase name="Verify if the booking details are in correct format" time="0.209" classname="PostiveTestingBookingPartialUpdateBooking"/>
+    <testcase name="Verify booking details match expected" time="0.209" classname="PostiveTestingBookingPartialUpdateBooking"/>
+  </testsuite>
+  <testsuite name="Postive Testing / Booking - DeleteBooking" id="61190b79-6629-4c27-bd7f-d294b2af0854" timestamp="2025-07-14T19:13:50.467Z" tests="6" failures="0" errors="0" time="0.216">
+    <testcase name="Verify if the response code is 201 (Created)" time="0.216" classname="PostiveTestingBookingDeleteBooking"/>
+    <testcase name="Verify if the response status text = Created" time="0.216" classname="PostiveTestingBookingDeleteBooking"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.216" classname="PostiveTestingBookingDeleteBooking"/>
+    <testcase name="Verify if the response body is received" time="0.216" classname="PostiveTestingBookingDeleteBooking"/>
+    <testcase name="Verify if Content-Type is text/plain" time="0.216" classname="PostiveTestingBookingDeleteBooking"/>
+    <testcase name="Verify if the response body contains text 'Created'" time="0.216" classname="PostiveTestingBookingDeleteBooking"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Invalid HTTP method / Auth - CreateToken" id="61861409-2b7e-4aa1-9d4e-5d6fed7fa3b8" timestamp="2025-07-14T19:13:50.467Z" tests="0" failures="0" errors="0" time="0.213"/>
+  <testsuite name="Negative Testing / Invalid HTTP method / Booking - GetBookingIds" id="6b496753-2155-417c-b2a5-e9ea8fca40d3" timestamp="2025-07-14T19:13:50.467Z" tests="0" failures="0" errors="0" time="0.418"/>
+  <testsuite name="Negative Testing / Invalid HTTP method / Create Booking - Invalid HTTP Method PUT" id="57d1ff91-3156-4552-884c-f1806b159c3d" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.216">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.216" classname="NegativeTestingInvalidHttpMethodCreateBookingInvalidHttpMethodPut"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.216" classname="NegativeTestingInvalidHttpMethodCreateBookingInvalidHttpMethodPut"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Invalid HTTP method / Create Booking - Invalid HTTP Method PATCH" id="3c508e97-3d98-4580-b663-79128fac2841" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.212">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.212" classname="NegativeTestingInvalidHttpMethodCreateBookingInvalidHttpMethodPatch"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.212" classname="NegativeTestingInvalidHttpMethodCreateBookingInvalidHttpMethodPatch"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Invalid HTTP method / Create Booking - Invalid HTTP DELETE" id="2984ca04-bbc6-467e-bdf3-48b4593cff96" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.215">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.215" classname="NegativeTestingInvalidHttpMethodCreateBookingInvalidHttpDelete"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.215" classname="NegativeTestingInvalidHttpMethodCreateBookingInvalidHttpDelete"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Invalid HTTP method / Update Booking - Invalid HTTP Method POST" id="730422fc-3647-4d4d-ae83-124c11f62519" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.209">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.209" classname="NegativeTestingInvalidHttpMethodUpdateBookingInvalidHttpMethodPost"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.209" classname="NegativeTestingInvalidHttpMethodUpdateBookingInvalidHttpMethodPost"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Invalid HTTP method / PartialUpdateBooking - Invalid HTTP method POST" id="b26a1fb4-115d-4bba-8ea6-11d0f43c92b2" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.215">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.215" classname="NegativeTestingInvalidHttpMethodPartialUpdateBookingInvalidHttpMethodPost"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.215" classname="NegativeTestingInvalidHttpMethodPartialUpdateBookingInvalidHttpMethodPost"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Invalid HTTP method / DeleteBooking - Invalid HTTP Method POST" id="c0248d6c-8d98-4765-aeb3-2e18ed21d57b" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.208">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.208" classname="NegativeTestingInvalidHttpMethodDeleteBookingInvalidHttpMethodPost"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.208" classname="NegativeTestingInvalidHttpMethodDeleteBookingInvalidHttpMethodPost"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Broken End Point Testing / Auth - CreateToken" id="d37a052f-ab10-47e5-930e-6e4833bd4305" timestamp="2025-07-14T19:13:50.467Z" tests="0" failures="0" errors="0" time="0.208"/>
+  <testsuite name="Negative Testing / Broken End Point Testing / Booking - GetBookingIds" id="7c1309ba-06cc-4b6c-a7e2-4c80dfa5349b" timestamp="2025-07-14T19:13:50.467Z" tests="0" failures="0" errors="0" time="0.211"/>
+  <testsuite name="Negative Testing / Broken End Point Testing / CreateBooking - Broken EndPoint" id="e3785e72-fb75-46aa-9918-067fa2fed238" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.207">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.207" classname="NegativeTestingBrokenEndPointTestingCreateBookingBrokenEndPoint"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.207" classname="NegativeTestingBrokenEndPointTestingCreateBookingBrokenEndPoint"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Broken End Point Testing / GetBooking - Broken Endpoint" id="87eb0875-9a71-431c-b59d-f54701fce3b6" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.204">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.204" classname="NegativeTestingBrokenEndPointTestingGetBookingBrokenEndpoint"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.204" classname="NegativeTestingBrokenEndPointTestingGetBookingBrokenEndpoint"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Broken End Point Testing / Booking - UpdateBooking" id="a1c60258-1fc0-4db8-b0c3-bd2dea6d18b1" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.210">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.210" classname="NegativeTestingBrokenEndPointTestingBookingUpdateBooking"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.210" classname="NegativeTestingBrokenEndPointTestingBookingUpdateBooking"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Broken End Point Testing / Booking - PartialUpdateBooking" id="932bb86d-3a63-4180-adf5-618b4a4cc502" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.208">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.208" classname="NegativeTestingBrokenEndPointTestingBookingPartialUpdateBooking"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.208" classname="NegativeTestingBrokenEndPointTestingBookingPartialUpdateBooking"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Broken End Point Testing / Booking - DeleteBooking" id="a1c56ac6-6112-49d0-83d6-46470fdc3aff" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.211">
+    <testcase name="Verify if the response code is 404 Not Found client side error" time="0.211" classname="NegativeTestingBrokenEndPointTestingBookingDeleteBooking"/>
+    <testcase name="Verify if the response body contains text &quot;Not Found&quot;" time="0.211" classname="NegativeTestingBrokenEndPointTestingBookingDeleteBooking"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Payload Temparing / Auth - CreateToken Copy" id="31f88c7e-4fde-4c32-9186-45bd805a1b44" timestamp="2025-07-14T19:13:50.467Z" tests="0" failures="0" errors="0" time="0.210"/>
+  <testsuite name="Negative Testing / Payload Temparing / Booking - GetBookingIds" id="38a2dbeb-287e-46be-8b26-19a547f8d5e7" timestamp="2025-07-14T19:13:50.467Z" tests="0" failures="0" errors="0" time="0.209"/>
+  <testsuite name="Negative Testing / Payload Temparing / CreateBooking Payload Tempering Invalid Data Type" id="f5151fd3-a7ee-4691-abd9-42470eea771b" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.211">
+    <testcase name="Verify if the response code is 500 Internal Server Error" time="0.211" classname="NegativeTestingPayloadTemparingCreateBookingPayloadTemperingInvalidDataType"/>
+    <testcase name="Verify if the response body contains text &quot;Internal Server Error&quot;" time="0.211" classname="NegativeTestingPayloadTemparingCreateBookingPayloadTemperingInvalidDataType"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Payload Temparing / CreateBooking Payload Tempering Invalid data length" id="83d0e4ff-97e5-4d34-bfb4-67ea2294af92" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.210">
+    <testcase name="Verify if the response code is 400 Bad Request" time="0.210" classname="NegativeTestingPayloadTemparingCreateBookingPayloadTemperingInvalidDataLength"/>
+    <testcase name="Verify if the response body contains text &quot;Bad Request&quot;" time="0.210" classname="NegativeTestingPayloadTemparingCreateBookingPayloadTemperingInvalidDataLength"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Payload Temparing / CreateBooking Payload Tempering - Firstname Field Missing in Payload" id="e9858e5d-3447-483e-a9c5-9a09df234adb" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.206">
+    <testcase name="Verify if the response code is 500 Internal Server Error" time="0.206" classname="NegativeTestingPayloadTemparingCreateBookingPayloadTemperingFirstnameFieldMissingInPayload"/>
+    <testcase name="Verify if the response body contains text &quot;Internal Server Error&quot;" time="0.206" classname="NegativeTestingPayloadTemparingCreateBookingPayloadTemperingFirstnameFieldMissingInPayload"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Payload Temparing / CreateBooking Payload Tempering Additional Field" id="3272f549-6b3d-41df-accc-a48ac9ca21e8" timestamp="2025-07-14T19:13:50.467Z" tests="1" failures="1" errors="0" time="0.206">
+    <testcase name="Verify if the response code has an error" time="0.206" classname="NegativeTestingPayloadTemparingCreateBookingPayloadTemperingAdditionalField">
+      <failure type="AssertionFailure" message="expected response code to be 4XX or 5XX but found 200">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a37022ef-62bb-489b-a8d4-e8efef4f79d2.]]>
+        <![CDATA[Collection name: Restful_Booker_API_testing.]]>
+        <![CDATA[Request name: Negative Testing / Payload Temparing / CreateBooking Payload Tempering Additional Field.]]>
+        <![CDATA[Test description: Verify if the response code has an error.]]>
+        <![CDATA[Error message: expected response code to be 4XX or 5XX but found 200.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response code to be 4XX or 5XX but found 200
+   at Object.eval sandbox-script.js:1:28).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Negative Testing / Payload Temparing / CreateBooking Payload Tempering - Empty Fields" id="7884fe45-a4ee-4e7b-906d-e8369b5c5a5b" timestamp="2025-07-14T19:13:50.467Z" tests="1" failures="1" errors="0" time="0.207">
+    <testcase name="Verify if the response code has an error" time="0.207" classname="NegativeTestingPayloadTemparingCreateBookingPayloadTemperingEmptyFields">
+      <failure type="AssertionFailure" message="expected response code to be 4XX or 5XX but found 200">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: a37022ef-62bb-489b-a8d4-e8efef4f79d2.]]>
+        <![CDATA[Collection name: Restful_Booker_API_testing.]]>
+        <![CDATA[Request name: Negative Testing / Payload Temparing / CreateBooking Payload Tempering - Empty Fields.]]>
+        <![CDATA[Test description: Verify if the response code has an error.]]>
+        <![CDATA[Error message: expected response code to be 4XX or 5XX but found 200.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response code to be 4XX or 5XX but found 200
+   at Object.eval sandbox-script.js:1:29).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Negative Testing / Payload Temparing / UpdateBooking Payload Tempering Invalid Data Type" id="cdc26425-2ad6-4298-8d7c-ff38a97e4f07" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.207">
+    <testcase name="Verify if the response code is 400 Bad Request" time="0.207" classname="NegativeTestingPayloadTemparingUpdateBookingPayloadTemperingInvalidDataType"/>
+    <testcase name="Verify if the response body contains text &quot;Bad Request&quot;" time="0.207" classname="NegativeTestingPayloadTemparingUpdateBookingPayloadTemperingInvalidDataType"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Payload Temparing / UpdateBooking  Payload Tempering Invalid data length" id="759909f0-8db8-40f6-87ec-57db120beab5" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.206">
+    <testcase name="Verify if the response code is 400 Bad Request" time="0.206" classname="NegativeTestingPayloadTemparingUpdateBookingPayloadTemperingInvalidDataLength"/>
+    <testcase name="Verify if the response body contains text &quot;Bad Request&quot;" time="0.206" classname="NegativeTestingPayloadTemparingUpdateBookingPayloadTemperingInvalidDataLength"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Payload Temparing / UpdateBooking Payload Tempering - Firstname Field Missing in Payload" id="43b03873-4e54-4e9f-8892-d9e1f4d34965" timestamp="2025-07-14T19:13:50.467Z" tests="2" failures="0" errors="0" time="0.208">
+    <testcase name="Verify if the response code is 400 Bad Request" time="0.208" classname="NegativeTestingPayloadTemparingUpdateBookingPayloadTemperingFirstnameFieldMissingInPayload"/>
+    <testcase name="Verify if the response body contains text &quot;Bad Request&quot;" time="0.208" classname="NegativeTestingPayloadTemparingUpdateBookingPayloadTemperingFirstnameFieldMissingInPayload"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Payload Temparing / UpdateBooking Payload Tempering Additional Field" id="effb4091-49e3-45be-8219-d8a4e3a4701e" timestamp="2025-07-14T19:13:50.467Z" tests="1" failures="0" errors="0" time="0.210">
+    <testcase name="Verify if the response code has an error" time="0.210" classname="NegativeTestingPayloadTemparingUpdateBookingPayloadTemperingAdditionalField"/>
+  </testsuite>
+  <testsuite name="Negative Testing / Payload Temparing / UpdateBooking Payload Tempering - Empty Fields" id="2f5511f7-6a49-49be-8e75-54f8cc83d0c5" timestamp="2025-07-14T19:13:50.467Z" tests="1" failures="0" errors="0" time="0.208">
+    <testcase name="Verify if the response code has an error" time="0.208" classname="NegativeTestingPayloadTemparingUpdateBookingPayloadTemperingEmptyFields"/>
+  </testsuite>
+  <testsuite name="E2E API Automation / CREATE TOKEN" id="1d072caf-e4ca-4131-b5ab-8b085a49fc64" timestamp="2025-07-14T19:13:50.467Z" tests="7" failures="0" errors="0" time="0.211">
+    <testcase name="Verify if the response code = 200" time="0.211" classname="E2EApiAutomationCreateToken"/>
+    <testcase name="Verify if the response message = OK" time="0.211" classname="E2EApiAutomationCreateToken"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.211" classname="E2EApiAutomationCreateToken"/>
+    <testcase name="Verify if the response body is received from server" time="0.211" classname="E2EApiAutomationCreateToken"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.211" classname="E2EApiAutomationCreateToken"/>
+    <testcase name="Verify if the response body contains field &quot;token&quot;" time="0.211" classname="E2EApiAutomationCreateToken"/>
+    <testcase name="Verify if the token format is a non-empty alphanumeric string" time="0.211" classname="E2EApiAutomationCreateToken"/>
+  </testsuite>
+  <testsuite name="E2E API Automation / CREATE NEW BOOKING" id="e925d64a-60e9-4273-8b3e-79fbeb8c9697" timestamp="2025-07-14T19:13:50.467Z" tests="10" failures="0" errors="0" time="0.206">
+    <testcase name="Verify if the response code = 200" time="0.206" classname="E2EApiAutomationCreateNewBooking"/>
+    <testcase name="Verify if the response message = OK" time="0.206" classname="E2EApiAutomationCreateNewBooking"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.206" classname="E2EApiAutomationCreateNewBooking"/>
+    <testcase name="Verify if the response body is received from server" time="0.206" classname="E2EApiAutomationCreateNewBooking"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.206" classname="E2EApiAutomationCreateNewBooking"/>
+    <testcase name="Verify if the response is an Object" time="0.206" classname="E2EApiAutomationCreateNewBooking"/>
+    <testcase name="Verify if the response contains bookingid and booking fields" time="0.206" classname="E2EApiAutomationCreateNewBooking"/>
+    <testcase name="Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates, additionalneeds" time="0.206" classname="E2EApiAutomationCreateNewBooking"/>
+    <testcase name="Verify if bookingdates contains checkin and checkout keys" time="0.206" classname="E2EApiAutomationCreateNewBooking"/>
+    <testcase name="Verify if the booking details are in correct format" time="0.206" classname="E2EApiAutomationCreateNewBooking"/>
+  </testsuite>
+  <testsuite name="E2E API Automation / VERIFY IF BOOKING CREATED" id="5cd16702-1b46-4a9a-b6a9-ea423f1ecad4" timestamp="2025-07-14T19:13:50.467Z" tests="9" failures="0" errors="0" time="0.210">
+    <testcase name="Verify if the response code = 200" time="0.210" classname="E2EApiAutomationVerifyIfBookingCreated"/>
+    <testcase name="Verify if the response message = OK" time="0.210" classname="E2EApiAutomationVerifyIfBookingCreated"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.210" classname="E2EApiAutomationVerifyIfBookingCreated"/>
+    <testcase name="Verify if the response body is received from server" time="0.210" classname="E2EApiAutomationVerifyIfBookingCreated"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.210" classname="E2EApiAutomationVerifyIfBookingCreated"/>
+    <testcase name="Verify if the response is an array" time="0.210" classname="E2EApiAutomationVerifyIfBookingCreated"/>
+    <testcase name="Verify if the first object contains bookingid key" time="0.210" classname="E2EApiAutomationVerifyIfBookingCreated"/>
+    <testcase name="Verify all booking items have bookingid (number)" time="0.210" classname="E2EApiAutomationVerifyIfBookingCreated"/>
+    <testcase name="Verify if the booking is created with bookingid = 1973" time="0.210" classname="E2EApiAutomationVerifyIfBookingCreated"/>
+  </testsuite>
+  <testsuite name="E2E API Automation / UPDATE THE BOOKING" id="0b9316bb-6eac-4215-aab0-8fd2495c00d3" timestamp="2025-07-14T19:13:50.467Z" tests="10" failures="0" errors="0" time="0.208">
+    <testcase name="Verify if the response code = 200" time="0.208" classname="E2EApiAutomationUpdateTheBooking"/>
+    <testcase name="Verify if the response message = OK" time="0.208" classname="E2EApiAutomationUpdateTheBooking"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.208" classname="E2EApiAutomationUpdateTheBooking"/>
+    <testcase name="Verify if the response body is received from server" time="0.208" classname="E2EApiAutomationUpdateTheBooking"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.208" classname="E2EApiAutomationUpdateTheBooking"/>
+    <testcase name="Verify if the response is an Object" time="0.208" classname="E2EApiAutomationUpdateTheBooking"/>
+    <testcase name="Verify if the booking contains firstname, lastname, totalprice, depositpaid, bookingdates" time="0.208" classname="E2EApiAutomationUpdateTheBooking"/>
+    <testcase name="Verify if the booking dates contains checkin and checkout keys" time="0.208" classname="E2EApiAutomationUpdateTheBooking"/>
+    <testcase name="Verify if the booking details are in correct format" time="0.208" classname="E2EApiAutomationUpdateTheBooking"/>
+    <testcase name="Verify booking details match expected" time="0.208" classname="E2EApiAutomationUpdateTheBooking"/>
+  </testsuite>
+  <testsuite name="E2E API Automation / VERIFY IF BOOKING IS UPDATED" id="1b0fd808-42b2-4305-95f8-6e71d8b960f2" timestamp="2025-07-14T19:13:50.467Z" tests="13" failures="0" errors="0" time="0.210">
+    <testcase name="Verify if the response code = 200" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify if the response message = OK" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify if the response body is received from server" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify if the response is an Object" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify booking contains all required fields" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify bookingdates contains checkin and checkout" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify booking fields are in correct format" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify booking is updated with firstname=Halle" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify booking is updated with lastname=Leuschke" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify booking is updated with total price=380" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+    <testcase name="Verify booking details match expected values" time="0.210" classname="E2EApiAutomationVerifyIfBookingIsUpdated"/>
+  </testsuite>
+  <testsuite name="E2E API Automation / DELETE THE BOOKING" id="0850df02-142e-4a42-8804-4bb113b993cc" timestamp="2025-07-14T19:13:50.467Z" tests="6" failures="0" errors="0" time="0.210">
+    <testcase name="Verify if the response code is 201 (Created)" time="0.210" classname="E2EApiAutomationDeleteTheBooking"/>
+    <testcase name="Verify if the response status text = Created" time="0.210" classname="E2EApiAutomationDeleteTheBooking"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.210" classname="E2EApiAutomationDeleteTheBooking"/>
+    <testcase name="Verify if the response body is received" time="0.210" classname="E2EApiAutomationDeleteTheBooking"/>
+    <testcase name="Verify if Content-Type is text/plain" time="0.210" classname="E2EApiAutomationDeleteTheBooking"/>
+    <testcase name="Verify if the response body contains text 'Created'" time="0.210" classname="E2EApiAutomationDeleteTheBooking"/>
+  </testsuite>
+  <testsuite name="E2E API Automation / VERIFY IF BOOKING IS DELETED" id="738c78fb-bc80-4967-a93e-2a655a4d68a7" timestamp="2025-07-14T19:13:50.467Z" tests="9" failures="0" errors="0" time="0.213">
+    <testcase name="Verify if the response code = 200" time="0.213" classname="E2EApiAutomationVerifyIfBookingIsDeleted"/>
+    <testcase name="Verify if the response message = OK" time="0.213" classname="E2EApiAutomationVerifyIfBookingIsDeleted"/>
+    <testcase name="Verify if the response time is &lt; 3 seconds" time="0.213" classname="E2EApiAutomationVerifyIfBookingIsDeleted"/>
+    <testcase name="Verify if the response body is received from server" time="0.213" classname="E2EApiAutomationVerifyIfBookingIsDeleted"/>
+    <testcase name="Verify if the response header Content-Type=application/json" time="0.213" classname="E2EApiAutomationVerifyIfBookingIsDeleted"/>
+    <testcase name="Verify if the response is an array" time="0.213" classname="E2EApiAutomationVerifyIfBookingIsDeleted"/>
+    <testcase name="Verify if the first object contains bookingid key" time="0.213" classname="E2EApiAutomationVerifyIfBookingIsDeleted"/>
+    <testcase name="Verify all booking items have bookingid (number)" time="0.213" classname="E2EApiAutomationVerifyIfBookingIsDeleted"/>
+    <testcase name="Verify if the booking is deleted with bookingid = 1973" time="0.213" classname="E2EApiAutomationVerifyIfBookingIsDeleted"/>
+  </testsuite>
+</testsuites>
